@@ -15,7 +15,10 @@ a {
     text-decoration: none;
 }
 
-/* Custom styles for the navbar */
+/* Navbar */
+.navbar {
+    background-color: rgba(2, 10, 44, 0.95); 
+}
 
 @media (max-width: 991px) {
     .navbar-collapse {
@@ -28,7 +31,7 @@ a {
         right: 0;
         width: 100%; 
         height: 70vh;
-        background-color: #343a40; 
+        background-color: rgba(13, 17, 23, 0.85); 
         overflow-y: auto;
         transition: transform 0.3s ease-in-out;
         transform: translateX(100%);
@@ -46,7 +49,20 @@ a {
     text-align: center;
 }
 
+/* Home Background Image */
+.full-width-background {
+    background-image: url('/static/images/home-landing-image.webp');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    padding: 100px 0;
+  }
+
 /* Footer */
+.footer {
+    background-color: rgba(1, 19, 3, 0.95); 
+}
+
 .footer-header {
     margin-bottom: 1rem;
 }
@@ -58,3 +74,7 @@ a {
 .footer-statement {
     margin-top: 2rem;
 }
+
+.footer .text-white {
+    color: #fff; /* Ensure text is white for contrast */
+  }
