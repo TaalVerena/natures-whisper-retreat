@@ -3,5 +3,5 @@ from django.http import HttpResponse
 
 # Create your views here.
 
-def accounts_view(request):
-    return HttpResponse("Testing Accounts http response.")
+def login_view(request):
+    return HttpResponse("Testing Login http response.")
