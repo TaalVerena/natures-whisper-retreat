@@ -11,8 +11,11 @@ main {
     flex: 1; 
 }
 
-/* Custom styles for the navbar */
+a {
+    text-decoration: none;
+}
 
+/* Custom styles for the navbar */
 
 @media (max-width: 991px) {
     .navbar-collapse {
@@ -40,6 +43,18 @@ main {
 }
 
 .navbar-nav {
-    /* This will center the menu items in the collapsible menu */
     text-align: center;
+}
+
+/* Footer */
+.footer-header {
+    margin-bottom: 1rem;
+}
+
+.footer-info {
+    margin-bottom: 0.5rem;
+}
+
+.footer-statement {
+    margin-top: 2rem;
 }
