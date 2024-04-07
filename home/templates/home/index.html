@@ -1,13 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nature's Whisper Retreat</title>
-</head>
-<body>
-    <h1>Welcome to Nature's Whisper Retreat!</h1>
-    <p>Explore the tranquility of Crater Lakes' finest lodges.</p>
-    <!-- Home page content -->
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Main content for the Home page -->
+<div class="container mt-5">
+  <div class="jumbotron">
+    <h1 class="display-4">Welcome to Nature's Whisper Retreat!</h1>
+    <p class="lead">Discover the serenity and beauty of Crater Lakes' finest lodges.</p>
+    <hr class="my-4">
+    <p>Start your journey with us today.</p>
+    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+  </div>
+
+  <!-- Lodge detail section -->
+  <section class="my-5">
+    <h2>Explore Our Lodges</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <img src="path_to_image" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Lodge Name</h5>
+            <p class="card-text">Lodge details / description.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <img src="path_to_image" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Lodge Name</h5>
+            <p class="card-text">Lodge details / description.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <img src="path_to_image" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Lodge Name</h5>
+            <p class="card-text">Lodge details / description.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}
