@@ -52,3 +52,27 @@ Below are the epics developed for Nature's Whisper Retreat, each aimed at enhanc
    - Implementing security measures to protect user data and enhance system integrity.
 
 Stay updated with our latest advancements by visiting the project [kanban board](https://github.com/users/TaalVerena/projects/3).
+
+### Site Structure
+
+#### Design and Wireframes
+To guide the development and ensure a user-centered design approach, wireframes were created for the various sections and pages of the site. These wireframes serve as a blueprint for the layout and interaction patterns within Nature's Whisper Retreat, allowing me to visualize and refine the user experience before moving into full-scale development.
+
+The wireframes for Nature's Whisper Retreat are categorized as follows:
+
+#### Home Page:
+The entry point of the website, featuring a welcoming overview, quick search, and featured lodges.
+#### Lodge Detail Page:
+Individual pages for each lodge, showcasing descriptions, amenities, pricing, and booking options.
+#### Booking Flow:
+A step-by-step visualization of the booking process, from date selection to payment confirmation.
+#### User Account Area:
+User profile pages, including personal details, booking history, and account settings.
+#### Admin Dashboard:
+A comprehensive layout for site administrators to manage listings, bookings, and user accounts.
+#### Contact Form:
+The design of the contact form, ensuring ease of use and clarity for users submitting inquiries.
+
+Each wireframe will be created with careful consideration to usability standards and will be iterated upon based on user feedback and testing results.
+
+Please note that the wireframes are in the process of being developed and will be made available for viewing and feedback once completed. Their creation is a collaborative effort to ensure that Nature's Whisper Retreat not only meets but exceeds the expectations of our future guests and lodge owners.
