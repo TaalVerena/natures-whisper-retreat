@@ -1,4 +1,5 @@
 {% load static %}
+{% load cloudinary %}
 <!-- Lodge detail section -->
 <section class="my-5">
   <h2>Explore Our Lodges</h2>
@@ -6,7 +7,7 @@
     {% for lodge in lodges %}
     <div class="col-md-4">
       <div class="card lodge-card">
-        <img src="{{ lodge.image.url }}" class="card-img-top" alt="{{ lodge.name }}">
+        <img src=" {{ lodge.image.url }}" class="card-img-top" alt="{{ lodge.name }}">
         <div class="card-body">
           <h5 class="card-title">{{ lodge.name }}</h5>
           <p class="card-text">{{ lodge.description }}</p>
