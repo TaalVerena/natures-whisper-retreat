@@ -1,35 +1,85 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<main role="main" class="container">
-  <section class="my-5">
-    <h1>Welcome to Nature's Whisper</h1>
-    <p>Introduction text...</p>
-  </section>
+<!-- Hero Section -->
+<div class="container-fluid p-0">
+    <div class="full-width-background"
+        style="background-image: url('/static/images/about-lakeside-cabins.webp'); position: relative;">
+        <!-- Semi-transparent Overlay -->
+        <div style="position: absolute; top: 0; right: 0; bottom: 0; left: 0; background-color: rgba(0, 0, 0, 0.5);">
+        </div>
 
-  <section id="retreat">
-    <h2>Nature Retreat</h2>
-    <p>Details about the nature retreat experience...</p>
-  </section>
+        <div class="container text-center text-white py-5" style="position: relative;">
+            <h1 class="display-3 font-weight-bold" style="text-shadow: 2px 2px 4px #000000;">Discover Nature's Whisper</h1>
+            <p class="lead" style="text-shadow: 1px 1px 2px #000000;">... the essence of tranquility ...</p>
+        </div>
+    </div>
+</div>
 
-  <section id="trails">
-    <h2>Hiking and Biking Trails</h2>
-    <p>Information about the trails...</p>
-  </section>
+<!-- Main content -->
+<main role="main" class="container p-0">
+    <section class="row flex-row-reverse align-items-center my-5">
+        <div class="col-lg-6">
+            <img src="/static/images/about-cabin-view.webp" alt="Hiking and Biking Trails" class="img-fluid rounded-3">
+        </div>
+        <div class="col-lg-6">
+            <h2 class="display-4 text-center">Nature Retreats</h2>
+            <hr>
+            <p class="text-center">A haven awaits for those looking to step away from the hustle and bustle of daily
+                life and into the soothing embrace of nature. Here, you can relax in our eco-friendly accommodations,
+                bask in the stunning views from your window, and let the calmness of the surroundings rejuvenate your
+                spirit. Designed to harmonize with the natural environment, enjoy a stay that's both
+                comfortable and sustainable.
+            </p>
+        </div>
+    </section>
 
-  <section id="lake-activities">
-    <h2>Lake Activities</h2>
-    <p>Details about lake activities...</p>
-  </section>
+    <section class="row align-items-center my-5">
+        <div class="col-lg-6">
+            <img src="/static/images/about-trails.webp" alt="Lake Activities" class="img-fluid rounded-3">
+        </div>
+        <div class="col-lg-6">
+            <h2 class="display-4 text-center">Trails</h2>
+            <hr>
+            <p class="text-center">Explore the wonders of nature on our extensive network of hiking and biking trails.
+                Designed for nature
+                enthusiasts of all levels, our trails offer a variety of landscapes, from gentle meandering paths
+                through lush forests to challenging terrains on rugged hillsides. Whether you're a seasoned hiker or a
+                casual biker, our trails provide the perfect opportunity to immerse yourself in the scenic beauty and
+                diverse wildlife of the area.</p>
+        </div>
+    </section>
 
-  <section id="conservation">
-    <h2>Nature Conservation</h2>
-    <p>Information on conservation efforts...</p>
-  </section>
+    <section class="row flex-row-reverse align-items-center my-5">
+        <div class="col-lg-6">
+            <img src="/static/images/about-lake-activities.webp" alt="Nature Conservation" class="img-fluid rounded-3">
+        </div>
+        <div class="col-lg-6">
+            <h2 class="display-4 text-center">Lake Activities</h2>
+            <hr>
+            <p class="text-center">Dive into a world of aquatic adventure with our array of lake activities. The
+                crystal-clear waters of our
+                pristine lake invite you to partake in kayaking, canoeing, paddle boarding, and fishing. Or, if you
+                prefer a more leisurely pace, simply unwind by the lakeshore, where the gentle lap of waves and the
+                chorus of nature create a symphony of peace and relaxation.</p>
+        </div>
+    </section>
 
-  <div class="text-center mt-4">
-    <a href="#" class="btn btn-primary">Get in Touch</a>
-    <a href="#" class="btn btn-primary">Book Your Stay</a>
-  </div>
+    <section class="row align-items-center my-5">
+        <div class="col-lg-6">
+            <img src="/static/images/about-lake-view.webp" alt="Nature Conservation" class="img-fluid rounded-3">
+        </div>
+        <div class="col-lg-6">
+            <h2 class="display-4 text-center">Nature Conservation</h2>
+            <hr>
+            <p class="text-center">At Nature's Whisper, we are deeply committed to preserving the natural beauty and
+                biodiversity of our
+                surroundings. Our conservation efforts include habitat restoration projects, wildlife protection
+                initiatives, and sustainable practices that minimize our footprint on the environment. By staying with
+                us, you're contributing to these efforts, helping ensure that the splendor of nature can be enjoyed by
+                generations to come.</p>
+        </div>
+    </section>
+
 </main>
 {% endblock %}
