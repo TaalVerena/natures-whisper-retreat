@@ -12,7 +12,7 @@
           <h5 class="card-title">{{ lodge.name }}</h5>
           <p class="card-text">{{ lodge.description }}</p>
           {% if user.is_staff %}
-          <a href="#" class="btn btn-danger">Edit</a>
+          <a href="{% url 'admin:home_lodgeoverview_change' lodge.id %}" class="btn btn-danger">Edit</a>
           {% endif %}
         </div>
       </div>
