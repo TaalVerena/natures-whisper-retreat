@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load cloudinary %}
+
+{% block content %}
+<main role="main" class="container my-5">
+    <h1 class="text-center">Our Lodges</h1>
+    <div class="row">
+        {% for lodge in lodges %}
+        <div class="col-md-4 d-flex align-items-stretch">
+            <div class="card mb-4 shadow-sm">
+                <img src="{{ lodge.image.url }}" class="card-img-top" alt="{{ lodge.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ lodge.name }}</h5>
+                    <p class="card-text">{{ lodge.description }}</p>
+                    <p class="card-text"><small class="text-muted">Amenities: {{ lodge.amenities }}</small></p>
+                    <a href="#" class="btn btn-primary">Make a Reservation</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+{% endblock %}
