@@ -13,8 +13,8 @@
             </div>
             <div class="col-lg-6">
                 <h2 class="mt-2">{{ lodge.name }}</h2>
-                <p>{{ lodge.description }}</p>
-                <p>{{ lodge.amenities }}</p>
+                <p>{{ lodge.description|safe }}</p>
+                <p>{{ lodge.amenities|safe }}</p>
                 <a href="#" class="btn btn-primary">Make a Reservation</a>
             </div>
         </div>
