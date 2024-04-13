@@ -1,25 +1,24 @@
 {% extends 'base.html' %}
-
 {% load static %}
 {% load cloudinary %}
 
 {% block content %}
-<main role="main" class="container my-5">
-    <h1 class="text-center">Our Lodges</h1>
-    <div class="row">
-        {% for lodge in lodges %}
-        <div class="col-md-4 d-flex align-items-stretch">
-            <div class="card mb-4 shadow-sm">
-                <img src="{{ lodge.image.url }}" class="card-img-top" alt="{{ lodge.name }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ lodge.name }}</h5>
-                    <p class="card-text">{{ lodge.description }}</p>
-                    <p class="card-text"><small class="text-muted">Amenities: {{ lodge.amenities }}</small></p>
-                    <a href="#" class="btn btn-primary">Make a Reservation</a>
-                </div>
+<main role="main" class="container">
+    <h1 class="text-center my-4">Our Lodges</h1>
+    {% for lodge in lodges %}
+    <section class="lodge-section my-5">
+        <div class="row">
+            <div class="col-lg-6">
+                <img src="{{ lodge.image.url }}" alt="{{ lodge.name }}" class="img-fluid rounded">
+            </div>
+            <div class="col-lg-6">
+                <h2 class="mt-2">{{ lodge.name }}</h2>
+                <p>{{ lodge.description }}</p>
+                <p>{{ lodge.amenities }}</p>
+                <a href="#" class="btn btn-primary">Make a Reservation</a>
             </div>
         </div>
-        {% endfor %}
-    </div>
+    </section>
+    {% endfor %}
 </main>
 {% endblock %}
