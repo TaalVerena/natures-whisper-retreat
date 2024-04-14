@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     "about",
     "home",
     "lodges",
+    "reservations",
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"

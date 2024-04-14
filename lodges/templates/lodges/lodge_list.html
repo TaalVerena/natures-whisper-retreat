@@ -16,7 +16,7 @@
                 <p>{{ lodge.description|safe }}</p>
                 <p>Amenities:</p>
                 <p>{{ lodge.amenities|safe }}</p>
-                <a href="#" class="btn btn-primary">Make a Reservation</a>
+                <a href="{% url 'make_reservation' lodge.id %}" class="btn btn-primary">Make a Reservation</a>
                 {% if user.is_staff %}
                 <a href="{% url 'admin:lodges_lodge_change' lodge.id %}" class="btn btn-danger">Edit</a>
                 {% endif %}
