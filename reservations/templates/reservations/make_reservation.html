@@ -1,11 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block head %}
+<link href='https://unpkg.com/@fullcalendar/core@6/main.min.css' rel='stylesheet' />
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
+{% endblock %}
+
+
 {% block scripts %}
-    <script src="{% static 'js/calendar.js' %}"></script>
-    <script>
-        window.lodgeId = "{{ lodge.id }}";
-    </script>
+<script>
+    window.lodgeId = "{{ lodge.id }}";
+</script>
+<script src="{% static 'js/calendar.js' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -31,8 +37,8 @@
 {% if messages %}
 <ul class="messages">
     {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
+    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
 </ul>
 {% endif %}
 

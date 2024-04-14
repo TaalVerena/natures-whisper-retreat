@@ -1,53 +1,36 @@
-$(document).ready(function () {
-    var startInput = $('#start_date');
-    var endInput = $('#end_date');
+document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    var startInput = document.getElementById('start_date');
+    var endInput = document.getElementById('end_date');
     var currentSelection = null;
 
-    $('#calendar').fullCalendar({
-        header: {
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        headerToolbar: {
             left: 'prev,next today',
             center: 'title',
-            right: 'month'
+            right: 'dayGridMonth,timeGridWeek,timeGridDay'
         },
-        editable: false,
-        eventLimit: true,
-        dateClick: function (info) {
+        selectable: true,
+        dateClick: function(info) {
+            console.log("Date clicked: " + info.dateStr);
             if (!currentSelection) {
-                startInput.val(info.dateStr); 
-                currentSelection = info.dateStr; 
-                endInput.val(''); 
+                startInput.value = info.dateStr;
+                currentSelection = info.dateStr;
+                endInput.value = '';
             } else {
-               
                 if (new Date(info.dateStr) >= new Date(currentSelection)) {
-                    endInput.val(info.dateStr); 
+                    endInput.value = info.dateStr;
                 } else {
-                    startInput.val(info.dateStr); 
-                    endInput.val(currentSelection); 
+                    startInput.value = info.dateStr;
+                    endInput.value = currentSelection;
                 }
                 currentSelection = null;
             }
         },
+        events: '/reservations/events/' + window.lodgeId + '/',
+        eventColor: '#378006'
+    });
 
-        // Event fetching from backend
-        events: function (start, end, timezone, callback) {
-            $.ajax({
-                url: '/reservations/events/' + window.lodgeId + '/',
-                dataType: 'json',
-                success: function (response) {
-                    var events = [];
-                    response.forEach(function (data) {
-                        events.push({
-                            title: data.title,
-                            start: data.start,
-                            end: data.end,
-                            rendering: 'background',
-                            color: data.color
-                        });
-                    });
-                    callback(events);
-                }
-            });
-        }
-    }).render(); 
-
+    calendar.render();
 });
