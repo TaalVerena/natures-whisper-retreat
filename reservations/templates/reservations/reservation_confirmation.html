@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h1 class="card-title">Reservation Confirmed!</h1>
+                    <p class="card-text">Thank you for your reservation at {{ reservation.lodge.name }}.</p>
+                    <p class="card-text">Your reservation details are as follows:</p>
+                    <ul class="list-unstyled">
+                        <li><strong>Lodge:</strong> {{ reservation.lodge.name }}</li>
+                        <li><strong>Check-in Date:</strong> {{ reservation.start_date|date:"F d, Y" }}</li>
+                        <li><strong>Check-out Date:</strong> {{ reservation.end_date|date:"F d, Y" }}</li>
+                        <li><strong>Guests:</strong> {{ reservation.guests }}</li>
+                    </ul>
+                    <a href="{% url 'home' %}" class="btn btn-primary">Return to the homepage</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

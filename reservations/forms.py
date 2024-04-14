@@ -6,7 +6,7 @@ class ReservationForm(forms.ModelForm):
         model = Reservation
         fields = ['start_date', 'end_date', 'guests']
         widgets = {
-            'start_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
-            'end_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'start_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control', 'id':'start_date'}),
+            'end_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control', 'id':'end_date'}),
             'guests': forms.NumberInput(attrs={'class': 'form-control'})
         }
