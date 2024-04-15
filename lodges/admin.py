@@ -2,7 +2,16 @@ from django.contrib import admin
 from django_summernote.admin import SummernoteModelAdmin
 from .models import Lodge
 
-# Register your models here.
 @admin.register(Lodge)
 class LodgeAdmin(SummernoteModelAdmin):
-    summernote_fields = ('description', 'amenities')
+    list_display = ['name', 'rate'] 
+    fieldsets = (
+        (None, {
+            'fields': ('name', 'rate')
+        }),
+        ('Details', {
+            'classes': ('collapse',),
+            'fields': ('description', 'amenities'),
+        }),
+    )
+    summernote_fields = ('description', 'amenities') 

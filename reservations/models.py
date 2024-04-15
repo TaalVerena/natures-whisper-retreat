@@ -1,5 +1,7 @@
 from django.db import models
 from django.conf import settings
+from lodges.models import Lodge
+
 
 # Create your models here.
 class Reservation(models.Model):
@@ -10,4 +12,4 @@ class Reservation(models.Model):
     guests = models.IntegerField()
 
     def __str__(self):
-        return f"{self.lodge} reservation from {self.start_date} to {self.end_date} for {self.guests} guests"
+        return f"{self.lodge} reservation from {self.start_date} to {self.end_date} for {self.guests}"

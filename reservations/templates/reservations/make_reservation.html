@@ -23,13 +23,13 @@
         </div>
         <div class="col-md-6">
             <div id='calendar'></div> <!-- Calendar placeholder -->
-        </div>
-        <div class="col-md-6">
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="btn btn-primary">Book Now</button>
-            </form>
+            <div class="col-md-6 mb-4">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Book Now</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
