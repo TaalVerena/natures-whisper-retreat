@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container text-center mt-5">
+    <h1 class="display-4 fs-2">404: Oops! Hidden Cabin Discovered.</h1>
+    <p class="lead">Looks like you've wandered off the beaten path and found our secret hideaway!<br>
+        This page is more elusive than a whispering willow in the wild.<br>
+        Let's trek back to familiar grounds and get you back <a href="{% url 'home' %}" class="alert-link">home</a>.</p>
+    <img src="{% static 'images/404.webp' %}" alt="404 Not Found" class="img-fluid my-4 rounded w-50">
+    <p><a href="{% url 'home' %}" class="btn btn-primary btn-lg">Back to Safety</a></p>
+</div>
+{% endblock %}
