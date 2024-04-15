@@ -1,13 +1,15 @@
-from django.shortcuts import render
-from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic.edit import CreateView
 from .forms import ContactForm
+from .models import ContactRequest
 
-# Create your views here.
 class ContactCreateView(CreateView):
-    template_name = 'contact/contact_form.html'
+    model = ContactRequest
     form_class = ContactForm
-    success_url = reverse_lazy('contact_success')
+    template_name = 'contact/contact_form.html'
+    success_url = '/contact/success/'
 
-    def form_valid(self, form):
-        return super().form_valid(form)
+    def get_initial(self):
+        initial = super().get_initial()
+        if self.request.user.is_authenticated:
+            initial['email'] = self.request.user.email
+        return initial

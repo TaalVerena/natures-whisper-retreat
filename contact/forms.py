@@ -5,3 +5,8 @@ class ContactForm(forms.ModelForm):
     class Meta:
         model = ContactRequest
         fields = ['name', 'email', 'category', 'message']
+    
+    def __init__(self, *args, **kwargs):
+        super(ContactForm, self).__init__(*args, **kwargs)
+        self.fields['name'].required = False
+        self.fields['email'].required = False
