@@ -11,8 +11,4 @@ class ReservationAdmin(admin.ModelAdmin):
         return (obj.end_date - obj.start_date).days
     duration_days.short_description = 'Duration (days)'
 
-    # Optionally customize the form to use in the admin
-    # fields = ['user', 'lodge', 'start_date', 'end_date', 'guests']
-    # or use fieldsets for better organization
-
 admin.site.register(Reservation, ReservationAdmin)
