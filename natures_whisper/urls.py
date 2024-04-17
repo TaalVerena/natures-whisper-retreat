@@ -24,7 +24,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("allauth.urls")),
     path("lodges/", include("lodges.urls"), name="lodges-urls"),
-    path("reservations/", include("reservations.urls")),
+    path("reservations/", include("reservations.urls"), name="reservations-urls"),
     path("", include("home.urls"), name="home-urls"),
     path("", include("contact.urls"), name="contact-urls"),
     path("", include("about.urls"), name="about-urls"),

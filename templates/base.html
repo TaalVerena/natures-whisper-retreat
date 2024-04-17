@@ -56,10 +56,15 @@
                                 <a class="nav-link {% if request.path == '/lodges/' %}active{% endif %}"
                                     href="{% url 'lodges' %}">Lodges</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link {% if request.path == '/reservations/' %}active{% endif %}"
-                                    href="#">Reservations</a>
-                            </li>
+                            {% if user.is_authenticated %}
+                            {% if user.is_staff %}
+                            <a class="nav-link {% if request.path == '/admin/reservations/reservation' %}active{% endif %}"
+                                href="{% url 'admin:reservations_reservation_changelist' %}">Lodge Bookings</a>
+                            {% else %}
+                            <a class="nav-link {% if request.path == '/dashboard/' %}active{% endif %}"
+                                href="{% url 'dashboard' %}">My Bookings</a>
+                            {% endif %}
+                            {% endif %}
                         </ul>
                     </div>
 
