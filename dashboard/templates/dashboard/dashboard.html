@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Reservation Dashboard</h1>
+    <h2>Upcoming Reservations</h2>
+    {% if upcoming_reservations %}
+    <ul>
+        {% for reservation in upcoming_reservations %}
+        <li>{{ reservation.start_date }} to {{ reservation.end_date }} at {{ reservation.lodge.name }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No upcoming reservations.</p>
+    {% endif %}
+
+    <h2>Past / Current Reservations</h2>
+    {% if past_reservations %}
+    <ul>
+        {% for reservation in past_reservations %}
+        <li>{{ reservation.start_date }} to {{ reservation.end_date }} at {{ reservation.lodge.name }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No past reservations.</p>
+    {% endif %}
+
+    <h2>Contact Us:</h2>
+    <a class="nav-link {% if request.path == '/contact/' %}active{% endif %}" href="{% url 'contact' %}">Contact</a>
+</div>
+{% endblock %}

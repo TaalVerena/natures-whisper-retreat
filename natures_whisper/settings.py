@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     "widget_tweaks",
     "about",
     "contact",
+    "dashboard",
     "home",
     "lodges",
     "reservations",
