@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import Reservation
 
 class ReservationAdmin(admin.ModelAdmin):
-    list_display = ('lodge', 'user', 'start_date', 'end_date', 'guests', 'duration_days')
+    list_display = ('status', 'lodge', 'user', 'start_date', 'end_date', 'duration_days')
     list_filter = ('lodge', 'start_date', 'end_date', 'user')
     search_fields = ('lodge__name', 'user__username', 'user__email')
     date_hierarchy = 'start_date'

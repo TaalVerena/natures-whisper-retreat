@@ -27,6 +27,7 @@
                 <form method="post">
                     {% csrf_token %}
                     {{ form.as_p }}
+                    <div>Sleeps up to {{ lodge.sleeps }} guests.</div>
                     <button type="submit" class="btn btn-primary">Book Now</button>
                 </form>
             </div>
@@ -34,12 +35,7 @@
     </div>
 </div>
 
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
-        {% endfor %}
-</ul>
-{% endif %}
+
+<div id="lodgeData" data-rate="{{ lodge.rate }}" style="display:none;"></div>
 
 {% endblock %}
