@@ -17,6 +17,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 select: function (info) {
                     var startDate = new Date(info.startStr);
                     var endDate = new Date(info.endStr);
+
+                    // Check if selected dates are in the future
+                    var today = new Date();
+                    if (startDate < today || endDate < today) {
+                        alert('You cannot book past dates. Please select future dates.');
+                        return;
+                    }
                 
                     // Check if any of the selected dates are fully booked with confirmed bookings
                     var overlapping = false;

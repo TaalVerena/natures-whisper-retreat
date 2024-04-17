@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     var calendarEl = document.getElementById('calendar');
 
-    // Fetch booked dates using AJAX from the backend
     fetch('/api/booked-dates/' + window.lodgeId + '/')
         .then(response => {
             if (!response.ok) {
@@ -17,8 +16,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 select: function (info) {
                     var startDate = new Date(info.startStr);
                     var endDate = new Date(info.endStr);
+
+                    var today = new Date();
+                    if (startDate < today || endDate < today) {
+                        alert('You cannot book past dates. Please select future dates.');
+                        return;
+                    }
                 
-                    // Check if any of the selected dates are fully booked with confirmed bookings
                     var overlapping = false;
                     for (var d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
                         var dateString = d.toISOString().split('T')[0];
@@ -38,7 +42,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         return;
                     }
                 
-                    // Proceed with selecting the dates
                     document.querySelector('input[name="start_date"]').value = info.startStr;
                     document.querySelector('input[name="end_date"]').value = info.endStr;
                 },
