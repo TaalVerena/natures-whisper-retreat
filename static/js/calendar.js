@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     var calendarEl = document.getElementById('calendar');
 
     // Fetch booked dates using AJAX from the backend
@@ -14,23 +14,36 @@ document.addEventListener('DOMContentLoaded', function() {
                 initialView: 'dayGridMonth',
                 events: '/reservations/events/' + window.lodgeId + '/',
                 selectable: true,
-                selectOverlap: function(event) {
-                    return event.extendedProps.type !== 'booked';
-                },
-                select: function(info) {
-                    var startDate = info.startStr;
-                    var endDate = info.endStr;
-                    
-
-                    if (bookedDates.includes(startDate)) {
-                        alert('Please select another date as this is fully booked.');
-                        calendar.unselect();
-                    } else {
-                        document.querySelector('input[name="start_date"]').value = startDate;
-                        document.querySelector('input[name="end_date"]').value = endDate;
+                select: function (info) {
+                    var startDate = new Date(info.startStr);
+                    var endDate = new Date(info.endStr);
+                
+                    // Check if any of the selected dates are fully booked with confirmed bookings
+                    var overlapping = false;
+                    for (var d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+                        var dateString = d.toISOString().split('T')[0];
+                        console.log('Checking date:', dateString);
+                        var isBooked = bookedDates.some(function (bookedDate) {
+                            return dateString === bookedDate.date && bookedDate.status === 'confirmed';
+                        });
+                        console.log('Is booked:', isBooked);
+                        if (isBooked) {
+                            overlapping = true;
+                            break;
+                        }
                     }
+                
+                    if (overlapping) {
+                        alert('One or more dates in this range are fully booked with confirmed bookings. Please select another date range.');
+                        return;
+                    }
+                
+                    // Proceed with selecting the dates
+                    document.querySelector('input[name="start_date"]').value = info.startStr;
+                    document.querySelector('input[name="end_date"]').value = info.endStr;
                 },
-                eventClick: function(info) {
+                
+                eventClick: function (info) {
                     alert('This date is fully booked. Please select another date.');
                 }
             });

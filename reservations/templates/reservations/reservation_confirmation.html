@@ -18,8 +18,8 @@
                     </ul>
                     <form method="post" action="{% url 'reservation_confirmation' reservation.id %}">
                         {% csrf_token %}
-                        <button type="submit" name="confirm" class="btn btn-success">Confirm</button>
-                        <button type="submit" name="cancel" class="btn btn-danger">Cancel</button>
+                        <button type="submit" name="confirm" class="btn btn-success">Confirm Reservation</button>
+                        <button type="submit" name="cancel" class="btn btn-danger">Cancel Reservation</button>
                     </form>
                 </div>
             </div>

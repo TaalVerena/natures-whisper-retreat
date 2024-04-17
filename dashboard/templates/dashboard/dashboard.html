@@ -29,7 +29,11 @@
                             {% if upcoming_reservations %}
                             <ul class="list-group list-group-flush">
                                 {% for reservation in upcoming_reservations %}
-                                <li class="list-group-item">{{ reservation.start_date }} to {{ reservation.end_date }} at {{ reservation.lodge.name }}</li>
+                                <li class="list-group-item">
+                                    <a href="{% url 'reservation_confirmation' reservation.id %}">
+                                        {{ reservation.start_date }} to {{ reservation.end_date }} at {{ reservation.lodge.name }}
+                                    </a>
+                                </li>
                                 {% endfor %}
                             </ul>
                             {% else %}

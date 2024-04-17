@@ -110,10 +110,15 @@ def get_booked_dates(request, lodge_id):
     reservations = Reservation.objects.filter(
         lodge_id=lodge_id, start_date__lte=end_date, end_date__gte=today
     )
-    booked_dates = {
-        reservation.start_date.strftime("%Y-%m-%d")
-        for reservation in reservations
-        for _ in range((reservation.end_date - reservation.start_date).days + 1)
-    }
+    booked_dates = []
 
-    return JsonResponse(list(booked_dates), safe=False)
+    for reservation in reservations:
+        delta = reservation.end_date - reservation.start_date
+        for i in range(delta.days + 1):
+            date = reservation.start_date + timedelta(days=i)
+            booked_dates.append({
+                'date': date.strftime('%Y-%m-%d'),
+                'status': reservation.status
+            })
+
+    return JsonResponse(booked_dates, safe=False)
