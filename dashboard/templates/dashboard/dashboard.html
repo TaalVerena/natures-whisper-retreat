@@ -1,31 +1,72 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<!-- Hero image -->
+<div class="container-fluid p-0" style="padding-top: 100px; padding-bottom: 50px;">
+    <div class="landing-image text-center" style="background-image: url('/static/images/dashboard.webp'); height: 400px; display: flex; justify-content: center; align-items: center;">
+        <div class="text-white py-5">
+            <h1 style="font-family: 'Pacifico', cursive; font-size: 6em;">Welcome</h1>
+            <h2 style="font-family: 'Arial', sans-serif; font-size: 1.5em;">to Your Reservation Dashboard</h2>
+        </div>
+    </div>
+</div>
+
 <div class="container mt-4">
-    <h1>Reservation Dashboard</h1>
-    <h2>Upcoming Reservations</h2>
-    {% if upcoming_reservations %}
-    <ul>
-        {% for reservation in upcoming_reservations %}
-        <li>{{ reservation.start_date }} to {{ reservation.end_date }} at {{ reservation.lodge.name }}</li>
-        {% endfor %}
-    </ul>
-    {% else %}
-    <p>No upcoming reservations.</p>
-    {% endif %}
+    <div class="row justify-content-center">
+        <div class="col-md-10">
 
-    <h2>Past / Current Reservations</h2>
-    {% if past_reservations %}
-    <ul>
-        {% for reservation in past_reservations %}
-        <li>{{ reservation.start_date }} to {{ reservation.end_date }} at {{ reservation.lodge.name }}</li>
-        {% endfor %}
-    </ul>
-    {% else %}
-    <p>No past reservations.</p>
-    {% endif %}
+            <!-- Accordion container -->
+            <div class="accordion" id="reservationsAccordion">
+                <!-- Upcoming Reservations Panel -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingUpcoming">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseUpcoming" aria-expanded="true" aria-controls="collapseUpcoming">
+                            Upcoming Reservations
+                        </button>
+                    </h2>
+                    <div id="collapseUpcoming" class="accordion-collapse collapse show" aria-labelledby="headingUpcoming" data-bs-parent="#reservationsAccordion">
+                        <div class="accordion-body">
+                            {% if upcoming_reservations %}
+                            <ul class="list-group list-group-flush">
+                                {% for reservation in upcoming_reservations %}
+                                <li class="list-group-item">{{ reservation.start_date }} to {{ reservation.end_date }} at {{ reservation.lodge.name }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% else %}
+                            <p>No upcoming reservations.</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
 
-    <h2>Contact Us:</h2>
-    <a class="nav-link {% if request.path == '/contact/' %}active{% endif %}" href="{% url 'contact' %}">Contact</a>
+                <!-- Past Reservations Panel -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingPast">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePast" aria-expanded="false" aria-controls="collapsePast">
+                            Past / Current Reservations
+                        </button>
+                    </h2>
+                    <div id="collapsePast" class="accordion-collapse collapse" aria-labelledby="headingPast" data-bs-parent="#reservationsAccordion">
+                        <div class="accordion-body">
+                            {% if past_reservations %}
+                            <ul class="list-group list-group-flush">
+                                {% for reservation in past_reservations %}
+                                <li class="list-group-item">{{ reservation.start_date }} to {{ reservation.end_date }} at {{ reservation.lodge.name }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% else %}
+                            <p>No past reservations.</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Button -->
+            <div class="text-center mt-4">
+                <a class="btn btn-primary mt-4 mb-4" href="{% url 'contact' %}" role="button">Contact Us</a>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
