@@ -9,9 +9,19 @@ from .models import Reservation
 from datetime import datetime, date, timedelta
 
 
-# Create your views here.
 @login_required
 def make_reservation(request, lodge_id):
+    """
+    View for making a reservation for a lodge.
+
+    Args:
+        request (HttpRequest): The request object.
+        lodge_id (int): The ID of the lodge for which reservation is to be made.
+
+    Returns:
+        HttpResponse: Renders 'reservations/make_reservation.html' template with reservation form and lodge details.
+
+    """
     lodge = get_object_or_404(Lodge, pk=lodge_id)
     form = ReservationForm(request.POST or None)
     if request.method == "POST" and form.is_valid():
@@ -37,6 +47,17 @@ def make_reservation(request, lodge_id):
 
 
 def reservation_confirmation(request, reservation_id):
+    """
+    View for confirming or cancelling a reservation.
+
+    Args:
+        request (HttpRequest): The request object.
+        reservation_id (int): The ID of the reservation.
+
+    Returns:
+        HttpResponse: Renders 'reservations/reservation_confirmation.html' template with reservation details.
+
+    """
     reservation = get_object_or_404(Reservation, id=reservation_id)
     if request.method == 'POST':
         if 'confirm' in request.POST:
@@ -54,11 +75,21 @@ def reservation_confirmation(request, reservation_id):
 
 
 def calendar_events(request, lodge_id):
+    """
+    View for fetching calendar events for a lodge.
+
+    Args:
+        request (HttpRequest): The request object.
+        lodge_id (int): The ID of the lodge.
+
+    Returns:
+        JsonResponse: JSON response with booked dates and available rates for the lodge.
+
+    """
     lodge = get_object_or_404(Lodge, pk=lodge_id)
     start_date = date.today()
     end_date = start_date + timedelta(days=90)
 
-    # Filter reservations for the given lodge within the next 90 days
     reservations = Reservation.objects.filter(
         lodge_id=lodge_id, start_date__lte=end_date, end_date__gte=start_date, status=Reservation.Status.CONFIRMED
     )
@@ -104,6 +135,17 @@ def calendar_events(request, lodge_id):
 
 
 def get_booked_dates(request, lodge_id):
+    """
+    View for fetching booked dates for a lodge.
+
+    Args:
+        request (HttpRequest): The request object.
+        lodge_id (int): The ID of the lodge.
+
+    Returns:
+        JsonResponse: JSON response with booked dates and their statuses.
+
+    """
     today = datetime.today()
     end_date = today + timedelta(days=90)
 
