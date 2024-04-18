@@ -4,15 +4,19 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-8 offset-md-2 text-center">
+            <!-- Success Icon -->
             <svg xmlns="http://www.w3.org/2000/svg" width="76" height="76" fill="currentColor"
                 class="bi bi-check-circle-fill text-success mb-3" viewBox="0 0 16 16">
                 <path
                     d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08 0L7 9.94 5.354 8.293a.75.75 0 1 0-1.06 1.06L6.47 11.47a.75.75 0 0 0 1.06 0l4.5-4.5a.75.75 0 0 0 0-1.06z" />
             </svg>
+            <!-- Success Title -->
             <h1 class="mb-3">Success!</h1>
+            <!-- Success Message -->
             <p class="lead">Your request has been submitted successfully.</p>
             <p>Thank you for reaching out to us. We will review your request and get back to you shortly.</p>
-            <a href="{% url 'home' %}" class="btn btn-primary mt-4">Return Home</a>
+            <!-- Return Home Button -->
+            <a href="{% url 'home' %}" class="btn btn-primary mt-4" aria-label="Return Home">Return Home</a>
         </div>
     </div>
 </div>
