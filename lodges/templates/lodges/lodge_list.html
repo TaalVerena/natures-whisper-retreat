@@ -4,21 +4,24 @@
 
 {% block content %}
 <main role="main" class="container">
+    <!-- Main heading -->
     <h1 class="text-center my-4">Our Lodges</h1>
     {% for lodge in page_obj %}
     <section class="lodge-section my-5">
         <div class="row">
+            <!-- Lodge images -->
             <div class="col-lg-6">
-                <img src="{{ lodge.image.url }}" alt="{{ lodge.name }}" class="img-fluid rounded">
+                <img src="{{ lodge.image.url }}" alt="{{ lodge.name }}" class="img-fluid rounded" aria-label="{{ lodge.name }} image">
                 <div class="row mt-3">
                     <div class="col-sm-6">
-                        <img src="{{ lodge.amenityImage1.url }}" alt="Extra Amenity 1" class="img-fluid rounded">
+                        <img src="{{ lodge.amenityImage1.url }}" alt="Extra Amenity 1" class="img-fluid rounded" aria-label="Extra Amenity 1 image">
                     </div>
                     <div class="col-sm-6">
-                        <img src="{{ lodge.amenityImage2.url }}" alt="Extra Amenity 2" class="img-fluid rounded">
+                        <img src="{{ lodge.amenityImage2.url }}" alt="Extra Amenity 2" class="img-fluid rounded" aria-label="Extra Amenity 2 image">
                     </div>
                 </div>
             </div>
+            <!-- Lodge details -->
             <div class="col-lg-6">
                 <h2 class="mt-2">{{ lodge.name }}</h2>
                 <p>{{ lodge.description|safe }}</p>
@@ -26,26 +29,30 @@
                 <p><strong>Cabin Rate:</strong> From ${{ lodge.rate }} per night</p>
                 <p>Amenities:</p>
                 <p>{{ lodge.amenities|safe }}</p>
-                <a href="{% url 'make_reservation' lodge.id %}" class="btn btn-primary">Make a Reservation</a>
+                <!-- Reservation button -->
+                <a href="{% url 'make_reservation' lodge.id %}" class="btn btn-primary" aria-label="Make a Reservation for {{ lodge.name }}">Make a Reservation</a>
+                <!-- Edit button (for staff users) -->
                 {% if user.is_staff %}
-                <a href="{% url 'admin:lodges_lodge_change' lodge.id %}" class="btn btn-danger">Edit</a>
+                <a href="{% url 'admin:lodges_lodge_change' lodge.id %}" class="btn btn-danger" aria-label="Edit {{ lodge.name }}">Edit</a>
                 {% endif %}
             </div>
             <hr class="mt-4">
         </div>
     </section>
     {% endfor %}
+    <!-- Pagination -->
     <div class="d-flex justify-content-center mt-4">
         <nav>
             <ul class="pagination">
+                <!-- First and Previous page links -->
                 {% if page_obj.has_previous %}
                 <li class="page-item">
-                    <a class="page-link" href="?page=1" aria-label="First">
+                    <a class="page-link" href="?page=1" aria-label="First Page">
                         <span aria-hidden="true">&laquo;&laquo;</span>
                     </a>
                 </li>
                 <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous Page">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
@@ -62,17 +69,18 @@
                 </li>
                 {% endif %}
 
-                <li class="page-item disabled"><a class="page-link">Page {{ page_obj.number }} of
-                        {{ page_obj.paginator.num_pages }}</a></li>
+                <!-- Page number and Total pages -->
+                <li class="page-item disabled"><a class="page-link">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</a></li>
 
+                <!-- Next and Last page links -->
                 {% if page_obj.has_next %}
                 <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next Page">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
                 <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last">
+                    <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last Page">
                         <span aria-hidden="true">&raquo;&raquo;</span>
                     </a>
                 </li>
