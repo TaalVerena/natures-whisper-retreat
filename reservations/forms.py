@@ -2,7 +2,13 @@ from django import forms
 from .models import Reservation
 
 class ReservationForm(forms.ModelForm):
+    """
+    Form for creating a reservation.
+    """
     class Meta:
+        """
+        Meta class defining the form behavior.
+        """
         model = Reservation
         fields = ['start_date', 'end_date']
         widgets = {
