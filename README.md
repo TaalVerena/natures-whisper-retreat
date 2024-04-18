@@ -64,6 +64,7 @@ Individual sections for each lodge, showcasing descriptions, amenities, pricing,
    ![Adventurers' Alcove](/README-media/adventurers-alcove.png)
 
 - The Nestling Nook:
+
    ![Nestling Nook](/README-media/nestling-nook.png)
 
 ### **Contact Form**:
@@ -96,21 +97,25 @@ Users are able to login or register for an account to access personalized featur
 A personalized dashboard for users to manage bookings and view reservation history.
 
 - Logged In Guest Header:
+   
    Once a user is logged in, they can access their dashboard by clicking on the "My Bookings" link or their username in the header.
 
    ![Logged in Guest Header](/README-media/logged-in-guest-header.png)
 
 - User Dashboard:
+   
    The user dashboard displays the user's booking history, including the lodge name and reservation dates.
 
    ![User Dashboard](/README-media/user-dashboard.png)
 
 - Booking Dropdown:
+   
    Users can view their booking details by clicking on the dropdown arrow, which expands to show the lodge name and reservation dates.
 
    ![User Booking Dropdown](/README-media/user-booking-dropdown.png)
 
 - Booking Cancellation:
+   
    Users can cancel their bookings by clicking on the reservation and confirming the cancellation as long as it is more than 24 hours before the reservation date.
    ALternatively, users can contact Nature's Whisper Retreat for assistance.
 
@@ -120,9 +125,11 @@ A personalized dashboard for users to manage bookings and view reservation histo
 An intuitive booking engine, allowing users to reserve their preferred lodges based on real-time availability.
 
 - Sign In:
+  
   By navigating to the Lodges page, users can click the reservation button and are prompted to sign in to their account to make a reservation. If they do not have an account, they can register for one.
 
 - Reservation Calendar:
+  
   Users can select their desired check-in and check-out dates using the interactive calendar, which displays available dates in green and unavailable dates in red.
 
   If users attempt to book a lodge for a past date, they will receive an error message prompting them to select a future date.
@@ -130,6 +137,7 @@ An intuitive booking engine, allowing users to reserve their preferred lodges ba
    ![Reservation Calendar](/README-media/reservation-calendar.png)
 
 - Booking Confirmation:
+   
    Once users select their check-in and check-out dates, they can proceed to confirm their reservation by clicking the "Book Now" button. A confirmation message is displayed, and the user can confirm or cancel the booking.
    
     ![Booking Confirmation](/README-media/booking-cancellation-confirmation.png)
@@ -138,6 +146,7 @@ An intuitive booking engine, allowing users to reserve their preferred lodges ba
 A comprehensive admin portal for managing listings, bookings, and user accounts, providing site owners with the tools to maintain and update the website.
 
 - Admin Login & Header:
+  
   Admins can access the admin portal by logging in with their credentials. The admin dashboard provides a range of features, including managing lodges, bookings, and user accounts.
 
   Once logged in, the header is updated to display the admin's username and a link to 'Lodge Bookings'.
@@ -145,11 +154,13 @@ A comprehensive admin portal for managing listings, bookings, and user accounts,
   ![Logged In Admin Header](/README-media/logged-in-admin-header.png)
 
 - Admin Username:
+  
   By clicking the username in the header, the admin can access the admin dashboard home page and associated features.
   
   ![Admin Dashboard](/README-media/admin-dashboard.png)
 
 - Admin 'Lodge Bookings':
+  
   By clicking the 'Lodge Bookings' button, the admin can view all bookings.
 
   ![Admin Reservation Dashboard](/README-media/admin-reservation-dashboard.png)
@@ -174,9 +185,9 @@ Care has been taken to ensure that the site is responsive and user-friendly on a
   
   ![Desktop About Landing Page](/README-media/about-page.png)
 
-  ![Mobile About Landing Page](/README-media/mobile-about-landing-page.png)
-
   ![Desktop Trails Section](/README-media/trails-activities.png)
+
+  ![Mobile About Landing Page](/README-media/mobile-about-landing-page.png)
 
   ![Mobile Trails Section](/README-media/mobile-about-trails.png)
 
@@ -222,7 +233,6 @@ Care has been taken to ensure that the site is responsive and user-friendly on a
 
   ![Mobile Admin Dashboard](/README-media/mobile-admin-dashboard.png)
 
-
 ### **Lodge Management**:
 A robust system for lodge owners and admins to create, update, and manage lodge listings.
 
@@ -249,6 +259,18 @@ A visually appealing design that reflects the tranquility and beauty of the Crat
 
 ### **User Friendliness**:
 Intuitive navigation and clear calls-to-action to guide users through the booking process.
+
+## Future Developments
+There are enhancements and features in the pipeline for Nature's Whisper Retreat to further improve the user experience and functionality of the platform. These developments will be implemented in future updates to provide users with a more comprehensive and enjoyable booking experience.
+
+### **Upcoming Features**:
+- **User Reviews & Ratings**: Implement a review system for users to share feedback and ratings on their lodge experiences.
+- **Lodge Comparison**: Allow users to compare lodge features, amenities, and pricing to make informed booking decisions.
+- **Seasonal Promotions**: Introduce seasonal promotions and discounts to attract guests during peak seasons.
+- **Social Media Integration**: Enable users to share their bookings and experiences on social media platforms.
+- **Search & Filter**: Implement search and filter options to help users find lodges based on specific criteria.
+- **Payment Gateway Integration**: Integrate a secure payment gateway for users to make online payments for their bookings.
+- **Bug Fixes & Optimization**: Address known bugs and optimize the site for improved performance and user satisfaction.
 
 ## User Experience
 
@@ -422,6 +444,7 @@ The testing process encompassed the following key areas:
 | --- | ----------- | ------ |
 | **Unable to Book If Clicking on the Rate** | Users are unable to book a lodge if they click on the rate instead of the the rest of the date block on the calendar. | To be fixed in future updates. |
 | **Booking Past Dates if Filling in Dates Manually** | Users are able to book lodges for past dates if they fill in the dates manually. | To be fixed in future updates. |
+| **Mobile Calendar View Blocks Rates** | The mobile calendar view blocks the rates for the lodges. | To be fixed in future updates. |
 
 ## Deployment
 Nature's Whisper Retreat was developed using the Gitpod IDE and deployed on Heroku. The deployment process involved several key steps to ensure a seamless transition from development to production, including setting up the project environment, configuring the database, and deploying the application to the live server.
