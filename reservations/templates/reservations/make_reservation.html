@@ -2,32 +2,42 @@
 {% load static %}
 
 {% block head %}
+<!-- Include FullCalendar CSS -->
 <link href='https://unpkg.com/@fullcalendar/core@6/main.min.css' rel='stylesheet' />
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
 {% endblock %}
 
-
 {% block scripts %}
 <script>
+    // Pass lodge ID to JavaScript
     window.lodgeId = "{{ lodge.id }}";
 </script>
+<!-- Include custom JavaScript for calendar functionality -->
 <script src="{% static 'js/calendar.js' %}"></script>
 {% endblock %}
 
 {% block content %}
+<!-- Reservation Section -->
 <div class="container mt-4">
     <h1>Make a Reservation at {{ lodge.name }}</h1>
     <div class="row">
+        <!-- Lodge Image -->
         <div class="col-md-6">
             <img src="{{ lodge.image.url }}" alt="{{ lodge.name }}" class="img-fluid">
         </div>
+        <!-- Calendar and Reservation Form -->
         <div class="col-md-6">
-            <div id='calendar'></div> <!-- Calendar placeholder -->
+            <!-- Calendar Placeholder -->
+            <div id='calendar' aria-label="Availability Calendar"></div>
             <div class="col-md-6 mb-4">
+                <!-- Reservation Form -->
                 <form method="post">
                     {% csrf_token %}
+                    <!-- Include form fields -->
                     {{ form.as_p }}
+                    <!-- Display number of guests the lodge can sleep -->
                     <div>Sleeps up to {{ lodge.sleeps }} guests.</div>
+                    <!-- Submit button -->
                     <button type="submit" class="btn btn-primary">Book Now</button>
                 </form>
             </div>
@@ -35,7 +45,6 @@
     </div>
 </div>
 
-
+<!-- Lodge Data (hidden) -->
 <div id="lodgeData" data-rate="{{ lodge.rate }}" style="display:none;"></div>
-
 {% endblock %}
