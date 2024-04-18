@@ -2,15 +2,21 @@
 {% load cloudinary %}
 <!-- Lodge detail section -->
 <section class="my-5">
+  <!-- Section heading -->
   <h2>Explore Our Lodges</h2>
+  <!-- Lodge cards -->
   <div class="row">
     {% for lodge in lodges %}
     <div class="col-md-4">
       <div class="card lodge-card">
-        <img src=" {{ lodge.image.url }}" class="card-img-top" alt="{{ lodge.name }}">
+        <!-- Lodge image -->
+        <img src="{{ lodge.image.url }}" class="card-img-top" alt="{{ lodge.name }}">
         <div class="card-body">
+          <!-- Lodge name -->
           <h5 class="card-title">{{ lodge.name }}</h5>
+          <!-- Lodge description -->
           <p class="card-text">{{ lodge.description }}</p>
+          <!-- Edit button for staff users -->
           {% if user.is_staff %}
           <a href="{% url 'admin:home_lodgeoverview_change' lodge.id %}" class="btn btn-danger">Edit</a>
           {% endif %}
@@ -19,6 +25,7 @@
     </div>
     {% endfor %}
   </div>
+  <!-- Call-to-action buttons for non-staff users -->
   {% if not user.is_staff %}
   <div class="text-center mt-5">
     <a href="{% url 'lodges' %}" class="btn btn-primary">Book Your Stay</a>

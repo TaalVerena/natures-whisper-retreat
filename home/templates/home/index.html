@@ -3,8 +3,8 @@
 
 {% block content %}
 <!-- Main content for the Home page -->
-<div class="container-fluid p-0">
-  <div class="full-width-background">
+<main role="main" class="container-fluid p-0">
+  <section class="full-width-background">
     <div class="container">
       <div class="row">
         <div class="col">
@@ -16,10 +16,11 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <main role="main" class="container">
-    <!-- Lodge detail section -->
+  <!-- Lodge detail section -->
+  <section class="container">
     {% include 'home/_lodge_overview.html' %}
-  </main>
-  {% endblock %}
+  </section>
+</main>
+{% endblock %}
