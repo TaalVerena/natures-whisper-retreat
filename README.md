@@ -15,6 +15,7 @@ The application incorporates a range of features designed to ensure a comprehens
 ## Table of Contents
 - [Nature's Whisper Retreat](#natures-whisper-retreat)
   - [Overview](#overview)
+  - [Table of Contents](#table-of-contents)
   - [Features](#features)
     - [**Landing / Home Page**:](#landing--home-page)
     - [**Header**:](#header)
@@ -63,6 +64,11 @@ The application incorporates a range of features designed to ensure a comprehens
     - [Tools \& Others](#tools--others)
   - [Testing](#testing)
     - [Manual Testing](#manual-testing)
+    - [Lighthouse Reports](#lighthouse-reports)
+    - [JavaScript Linting](#javascript-linting)
+    - [Python Linting](#python-linting)
+    - [HTML Validation](#html-validation)
+    - [CSS Validation](#css-validation)
   - [Bugs](#bugs)
     - [Resolved Bugs](#resolved-bugs)
     - [Known Bugs](#known-bugs)
@@ -589,7 +595,16 @@ JavaScript code was tested using JSHint to identify and resolve any syntax error
 ### Python Linting
 Python code was tested using Code Institute's Python Linter to identify and resolve any syntax errors or issues that may impact the site's functionality and user experience. The linting process helped ensure clean and optimized Python code, enhancing the site's performance and reliability.
    - All clear, no errors found
-  
+
+### HTML Validation
+HTML code was tested using the W3C Markup Validator to identify and resolve any syntax errors or issues that may impact the site's functionality and user experience. The validation process helped ensure clean and optimized HTML code, enhancing the site's performance and reliability.
+   - 2 minor warnings were found but no errors
+   - Errors where found whenever Django template tags were used
+
+### CSS Validation
+CSS code was tested using the W3C CSS Validator to identify and resolve any syntax errors or issues that may impact the site's functionality and user experience. The validation process helped ensure clean and optimized CSS code, enhancing the site's performance and reliability.
+   - All clear, no errors found
+
 ## Bugs
 ### Resolved Bugs
 | Bug | Description | Resolution |
