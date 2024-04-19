@@ -12,6 +12,73 @@ Nature's Whisper Retreat aims to provide a seamless and user-friendly platform f
 
 The application incorporates a range of features designed to ensure a comprehensive and enjoyable user experience, from an intuitive reservation calendar to secure user authentication and dynamic pricing based on seasonality and demand.
 
+## Table of Contents
+- [Nature's Whisper Retreat](#natures-whisper-retreat)
+  - [Overview](#overview)
+  - [Features](#features)
+    - [**Landing / Home Page**:](#landing--home-page)
+    - [**Header**:](#header)
+    - [**Lodge Overview**:](#lodge-overview)
+    - [**Footer**:](#footer)
+    - [**About Page**:](#about-page)
+    - [**Lodge Detail Page**:](#lodge-detail-page)
+    - [**Contact Form**:](#contact-form)
+    - [**Login / Register**:](#login--register)
+    - [**User Dashboard**:](#user-dashboard)
+    - [**Booking and Reservations**:](#booking-and-reservations)
+    - [**Admin Dashboard**:](#admin-dashboard)
+    - [**404 Page**:](#404-page)
+    - [**Responsive Design**:](#responsive-design)
+    - [**Lodge Management**:](#lodge-management)
+    - [**User Authentication**:](#user-authentication)
+    - [**Dynamic Pricing**:](#dynamic-pricing)
+    - [**Favicon**:](#favicon)
+    - [**Error Handling**:](#error-handling)
+    - [**Database Integration**:](#database-integration)
+    - [**User Roles**:](#user-roles)
+    - [**Inviting Design**:](#inviting-design)
+    - [**User Friendliness**:](#user-friendliness)
+  - [Future Developments](#future-developments)
+    - [**Upcoming Features**:](#upcoming-features)
+  - [User Experience](#user-experience)
+    - [Epics](#epics)
+    - [User Stories](#user-stories)
+    - [Site Structure](#site-structure)
+      - [Design and Wireframes](#design-and-wireframes)
+      - [Home Page:](#home-page)
+      - [About Page:](#about-page-1)
+      - [Lodge Detail Page:](#lodge-detail-page-1)
+      - [Reservation Page:](#reservation-page)
+      - [Contact Form:](#contact-form-1)
+    - [Login / Register Page:](#login--register-page)
+      - [User Account Dashboard:](#user-account-dashboard)
+      - [Admin Dashboard:](#admin-dashboard-1)
+      - [Booking Flow:](#booking-flow)
+  - [Database Schema](#database-schema)
+  - [Technologies Used](#technologies-used)
+    - [Languages](#languages)
+    - [Frameworks](#frameworks)
+    - [Libraries](#libraries)
+    - [Database](#database)
+    - [Tools \& Others](#tools--others)
+  - [Testing](#testing)
+    - [Manual Testing](#manual-testing)
+  - [Bugs](#bugs)
+    - [Resolved Bugs](#resolved-bugs)
+    - [Known Bugs](#known-bugs)
+  - [Deployment](#deployment)
+    - [Forking the GitHub Repository](#forking-the-github-repository)
+    - [Cloning the GitHub Repository](#cloning-the-github-repository)
+    - [Cloudinary Setup](#cloudinary-setup)
+    - [ElephantSQL Setup](#elephantsql-setup)
+    - [Heroku Deployment](#heroku-deployment)
+  - [Credits](#credits)
+    - [Content](#content)
+    - [Code](#code)
+    - [Media](#media)
+    - [Acknowledgements](#acknowledgements)
+
+
 ## Features
 
 ### **Landing / Home Page**:
@@ -412,25 +479,117 @@ Manual testing was conducted throughout the development process to ensure the fu
 The testing process encompassed the following key areas:
 
 - **User Authentication**: Verified the registration, login, and logout processes for users, ensuring secure access and account management.
+  | Test | Description | Result |
+  | --- | ----------- | ---------- |
+   | **User Registration** | Attempted to register with a new username and password. | Passed |
+   | **User Login** | Logged in with the registered username and password. | Passed |
+   | **User Logout** | Logged out of the account. | Passed |
+   
 - **Lodge Management**: Tested the creation, editing, and deletion of lodge listings by owners and admins, validating data integrity and user permissions.
+   | Test | Description | Result |
+   | --- | ----------- | ---------- |
+   | **Lodge Creation** | Created a new lodge listing with details and images. | Passed |
+   | **Lodge Editing** | Updated the lodge details and images. | Passed |
+   | **Lodge Deletion** | Deleted a lodge listing from the admin portal. | Passed |
 - **Booking and Reservations**: Checked the booking engine for accurate availability, pricing, and reservation confirmation, ensuring a seamless booking experience.
+   | Test | Description | Result |
+   | --- | ----------- | ---------- |
+   | **Reservation Calendar** | Selected check-in and check-out dates for booking a lodge. | Passed |
+   | **Booking Confirmation** | Confirmed the reservation and received a booking confirmation. | Passed |
+   | **Booking Cancellation** | Cancelled a booking and received a cancellation confirmation. | Passed |
 - **Dynamic Pricing**: Tested the admin portal for setting and updating lodge prices, verifying data persistence and real-time updates.
+   | Test | Description | Result |
+   | --- | ----------- | ---------- |
+   | **Pricing Update** | Adjusted the lodge price | Passed |
+
 - **Responsive Design**: Ensured the site's responsiveness across various devices, including desktops, laptops, tablets, and mobile phones, validating layout consistency and usability.
+   | Test | Description | Result |
+   | --- | ----------- | ---------- |
+   | **Desktop View** | Checked the site's layout and functionality on desktop screens. | Passed |
+   | **Tablet View** | Verified the site's responsiveness on tablet devices. | Passed |
+   | **Mobile View** | Tested the site's usability and navigation on mobile phones. | Passed |
 - **404 Page**: Tested the custom 404 page to ensure proper redirection and user guidance in case of broken links or missing pages.
+  | Test | Description | Result |
+   | --- | ----------- | ---------- |
+   | **404 Page Display** | Accessed a non-existent page to trigger the 404 error. | Passed |
+   | **404 Page Navigation** | Clicked on the link to return to the main site. | Passed |
 - **Contact Form**: Submitted test enquiries through the contact form, verifying admin portal updates and data submission.
+  | Test | Description | Result |
+   | --- | ----------- | ---------- |
+   | **Contact Form Submission** | Filled in the contact form and submitted an enquiry. | Passed |
+   | **Admin Portal Update** | Checked the admin portal for new contact requests. | Passed |
 - **User Dashboard**: Tested the user dashboard for booking management and reservation history, ensuring data accuracy and user-friendly interactions.
+  | Test | Description | Result |
+   | --- | ----------- | ---------- |
+   | **Booking History** | Viewed the user's booking history in the dashboard. | Passed |
+   | **Booking Cancellation** | Cancelled a booking and received a cancellation confirmation. | Passed |
 - **Admin Dashboard**: Verified the admin portal for managing listings, bookings, and user accounts, validating data retrieval and CRUD operations.
+   | Test | Description | Result |
+   | --- | ----------- | ---------- |
+   | **Lodge Management** | Created lodge listing and updated details in the admin portal. | Passed |
+   | **Booking Overview** | Viewed all bookings and updated reservation statuses. | Passed |
+   | **User Account Management** | Accessed user accounts and updated user roles. | Passed |
 - **Favicon**: Checked the custom favicon for proper display and brand recognition across browsers and devices.
 - **Error Handling**: Tested error checking and validation throughout the site, ensuring data integrity and user satisfaction.
 - **Database Integration**: Verified the seamless integration with the database to store and retrieve user, lodge, and booking information, validating data persistence and retrieval.
 - **User Roles**: Tested distinct roles for users, admins, etc., ensuring secure access and data management.
+  | Test | Description | Result |
+   | --- | ----------- | ---------- |
+   | **User Role Access** | Logged in as a user and accessed the user dashboard. | Passed |
+   | **Admin Role Access** | Logged in as an admin and accessed the admin portal. | Passed |
 - **Inviting Design**: Checked the visually appealing design for consistency and brand representation, validating the site's aesthetic appeal and user engagement.
 - **User Friendliness**: Ensured intuitive navigation and clear calls-to-action to guide users through the booking process, validating user satisfaction and engagement.
 - **Accessibility**: Tested the site for accessibility features.
 - **Performance**: Checked the site's performance using Lighthouse reports and optimized where necessary.
+  | Test | Description | Result |
+   | --- | ----------- | ---------- |
+   | **Performance Report** | Generated a Lighthouse report to assess the site's performance. | Passed |
+   | **Optimization** | Optimized the site based on the performance report. | Passed |
 - **SEO**: Ensured the site's SEO optimization by adding meta tags, alt attributes, and structured data.
+  | Test | Description | Result |
+   | --- | ----------- | ---------- |
+   | **Meta Tags** | Added meta tags for improved search engine visibility. | Passed |
+   | **Alt Attributes** | Added alt attributes to images for accessibility and SEO. | Passed |
+   | **Structured Data** | Implemented structured data for enhanced search results. | Passed |
 - **Cross-Browser Compatibility**: Tested the site across various browsers, including Chrome, Firefox, and Edge, ensuring consistent functionality and appearance.
+  | Test | Description | Result |
+   | --- | ----------- | ---------- |
+   | **Chrome Browser** | Checked the site's layout and functionality on Chrome. | Passed |
+   | **Firefox Browser** | Verified the site's responsiveness on Firefox. | Passed |
+   | **Edge Browser** | Tested the site's usability and navigation on Edge. | Passed |
 
+### Lighthouse Reports
+Lighthouse reports were generated to assess the site's performance, accessibility, best practices, and SEO optimization. The reports provided valuable insights into areas for improvement and optimization, ensuring a seamless and user-friendly experience for visitors.
+
+The Lighthouse reports for Nature's Whisper Retreat are as follows:
+- Landing Page:
+  
+  ![Lighthouse Report Landing Page](/README-media/lighthouse-report-landing-page.png)
+- About Page:
+  
+  ![Lighthouse Report About Page](/README-media/lighthouse-report-about-page.png)
+- Lodges Page:
+   
+   ![Lighthouse Report Lodges Page](/README-media/lighthouse-report-lodges-page.png)
+- Contact Form:
+  
+   ![Lighthouse Report Contact Form](/README-media/lighthouse-report-contact-form.png)
+- User Dashboard:
+
+   ![Lighthouse Report User Dashboard](/README-media/lighthouse-report-user-dashboard.png)
+- Reservation Page:
+
+   ![Lighthouse Report Reservation Page](/README-media/lighthouse-report-reservation-page.png)
+
+
+### JavaScript Linting
+JavaScript code was tested using JSHint to identify and resolve any syntax errors or issues that may impact the site's functionality and user experience. The linting process helped ensure clean and optimized JavaScript code, enhancing the site's performance and reliability.
+   - 1 warning was found "Functions declared within loops referencing an outer scoped variable may lead to confusing semantics. (dateString)"
+
+### Python Linting
+Python code was tested using Code Institute's Python Linter to identify and resolve any syntax errors or issues that may impact the site's functionality and user experience. The linting process helped ensure clean and optimized Python code, enhancing the site's performance and reliability.
+   - All clear, no errors found
+  
 ## Bugs
 ### Resolved Bugs
 | Bug | Description | Resolution |

@@ -2,9 +2,9 @@ from django.views.generic.edit import CreateView
 from .forms import ContactForm
 from .models import ContactRequest
 
+
 class ContactCreateView(CreateView):
     """A view for creating contact requests."""
-    
     model = ContactRequest
     form_class = ContactForm
     template_name = 'contact/contact_form.html'
