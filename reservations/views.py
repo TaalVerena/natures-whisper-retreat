@@ -38,12 +38,18 @@ def make_reservation(request, lodge_id):
             reservation.total_cost = lodge.rate * reservation.total_nights
         else:
             messages.error(request, "Check-out date must be after check-in date.")
-            return render(request, "reservations/make_reservation.html", {"form": form, "lodge": lodge})
+            return render(
+                request,
+                "reservations/make_reservation.html",
+                {"form": form, "lodge": lodge},
+            )
 
         reservation.save()
         return redirect("reservation_confirmation", reservation_id=reservation.id)
 
-    return render(request, "reservations/make_reservation.html", {"form": form, "lodge": lodge})
+    return render(
+        request, "reservations/make_reservation.html", {"form": form, "lodge": lodge}
+    )
 
 
 def reservation_confirmation(request, reservation_id):
@@ -59,19 +65,23 @@ def reservation_confirmation(request, reservation_id):
 
     """
     reservation = get_object_or_404(Reservation, id=reservation_id)
-    if request.method == 'POST':
-        if 'confirm' in request.POST:
+    if request.method == "POST":
+        if "confirm" in request.POST:
             reservation.status = Reservation.Status.CONFIRMED
             reservation.save()
             messages.success(request, "Reservation confirmed!")
-            return redirect('home')
-        elif 'cancel' in request.POST:
+            return redirect("home")
+        elif "cancel" in request.POST:
             reservation.status = Reservation.Status.CANCELLED
             reservation.save()
             messages.info(request, "Reservation cancelled.")
-            return redirect('home')
+            return redirect("home")
 
-    return render(request, 'reservations/reservation_confirmation.html', {'reservation': reservation})
+    return render(
+        request,
+        "reservations/reservation_confirmation.html",
+        {"reservation": reservation},
+    )
 
 
 def calendar_events(request, lodge_id):
@@ -91,7 +101,10 @@ def calendar_events(request, lodge_id):
     end_date = start_date + timedelta(days=90)
 
     reservations = Reservation.objects.filter(
-        lodge_id=lodge_id, start_date__lte=end_date, end_date__gte=start_date, status=Reservation.Status.CONFIRMED
+        lodge_id=lodge_id,
+        start_date__lte=end_date,
+        end_date__gte=start_date,
+        status=Reservation.Status.CONFIRMED,
     )
 
     booked_dates = set()
@@ -158,9 +171,8 @@ def get_booked_dates(request, lodge_id):
         delta = reservation.end_date - reservation.start_date
         for i in range(delta.days + 1):
             date = reservation.start_date + timedelta(days=i)
-            booked_dates.append({
-                'date': date.strftime('%Y-%m-%d'),
-                'status': reservation.status
-            })
+            booked_dates.append(
+                {"date": date.strftime("%Y-%m-%d"), "status": reservation.status}
+            )
 
     return JsonResponse(booked_dates, safe=False)

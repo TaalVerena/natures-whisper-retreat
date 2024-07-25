@@ -7,4 +7,4 @@ def about_view(request):
     Renders the about page.
 
     """
-    return render(request, 'about/about.html')
+    return render(request, "about/about.html")

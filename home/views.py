@@ -18,4 +18,4 @@ def home_view(request):
         the home page with lodge data.
     """
     lodges = LodgeOverview.objects.all()
-    return render(request, 'home/index.html', {'lodges': lodges})
+    return render(request, "home/index.html", {"lodges": lodges})

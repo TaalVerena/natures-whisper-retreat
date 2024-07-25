@@ -8,13 +8,13 @@ from contact.forms import ContactForm
 @login_required
 def dashboard(request):
     """
-    Render user reservations and contact form.
+        Render user reservations and contact form.
 
-    Parameters:
-        request (HttpRequest): The HTTP request object.
-a
-    Returns:
-        HttpResponse: Rendered HTML template for the user dashboard.
+        Parameters:
+            request (HttpRequest): The HTTP request object.
+    a
+        Returns:
+            HttpResponse: Rendered HTML template for the user dashboard.
     """
     # Get the authenticated user
     user = request.user
@@ -24,16 +24,12 @@ a
 
     # Retrieve upcoming reservations for the user
     upcoming_reservations = Reservation.objects.filter(
-        user=user,
-        start_date__gte=current_date,
-        status=Reservation.Status.CONFIRMED
+        user=user, start_date__gte=current_date, status=Reservation.Status.CONFIRMED
     ).order_by("start_date")
 
     # Retrieve past reservations for the user
     past_reservations = Reservation.objects.filter(
-        user=user,
-        start_date__lt=current_date,
-        status=Reservation.Status.CONFIRMED
+        user=user, start_date__lt=current_date, status=Reservation.Status.CONFIRMED
     ).order_by("-start_date")
 
     # Instantiate a contact form for the user

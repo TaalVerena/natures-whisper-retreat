@@ -3,10 +3,11 @@ from django.db import models
 
 class ContactRequest(models.Model):
     """Model to store contact requests."""
+
     CATEGORY_CHOICES = [
-        ('general', 'General Query'),
-        ('update', 'Booking Update Request'),
-        ('cancellation', 'Booking Cancellation'),
+        ("general", "General Query"),
+        ("update", "Booking Update Request"),
+        ("cancellation", "Booking Cancellation"),
     ]
     name = models.CharField(max_length=100)
     email = models.EmailField()

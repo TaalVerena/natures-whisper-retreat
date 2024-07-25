@@ -11,13 +11,16 @@
         <div class="row">
             <!-- Lodge images -->
             <div class="col-lg-6">
-                <img src="{{ lodge.image.url }}" alt="{{ lodge.name }}" class="img-fluid rounded" aria-label="{{ lodge.name }} image">
+                <img src="{{ lodge.image.url }}" alt="{{ lodge.name }}" class="img-fluid rounded"
+                    aria-label="{{ lodge.name }} image">
                 <div class="row mt-3">
                     <div class="col-sm-6">
-                        <img src="{{ lodge.amenityImage1.url }}" alt="Extra Amenity 1" class="img-fluid rounded" aria-label="Extra Amenity 1 image">
+                        <img src="{{ lodge.amenityImage1.url }}" alt="Extra Amenity 1" class="img-fluid rounded"
+                            aria-label="Extra Amenity 1 image">
                     </div>
                     <div class="col-sm-6">
-                        <img src="{{ lodge.amenityImage2.url }}" alt="Extra Amenity 2" class="img-fluid rounded" aria-label="Extra Amenity 2 image">
+                        <img src="{{ lodge.amenityImage2.url }}" alt="Extra Amenity 2" class="img-fluid rounded"
+                            aria-label="Extra Amenity 2 image">
                     </div>
                 </div>
             </div>
@@ -30,10 +33,12 @@
                 <p>Amenities:</p>
                 <p>{{ lodge.amenities|safe }}</p>
                 <!-- Reservation button -->
-                <a href="{% url 'make_reservation' lodge.id %}" class="btn btn-primary" aria-label="Make a Reservation for {{ lodge.name }}">Make a Reservation</a>
+                <a href="{% url 'make_reservation' lodge.id %}" class="btn btn-primary"
+                    aria-label="Make a Reservation for {{ lodge.name }}">Make a Reservation</a>
                 <!-- Edit button (for staff users) -->
                 {% if user.is_staff %}
-                <a href="{% url 'admin:lodges_lodge_change' lodge.id %}" class="btn btn-danger" aria-label="Edit {{ lodge.name }}">Edit</a>
+                <a href="{% url 'admin:lodges_lodge_change' lodge.id %}" class="btn btn-danger"
+                    aria-label="Edit {{ lodge.name }}">Edit</a>
                 {% endif %}
             </div>
             <hr class="mt-4">
@@ -70,7 +75,8 @@
                 {% endif %}
 
                 <!-- Page number and Total pages -->
-                <li class="page-item disabled"><a class="page-link">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</a></li>
+                <li class="page-item disabled"><a class="page-link">Page {{ page_obj.number }} of {{
+                        page_obj.paginator.num_pages }}</a></li>
 
                 <!-- Next and Last page links -->
                 {% if page_obj.has_next %}

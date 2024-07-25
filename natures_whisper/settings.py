@@ -35,7 +35,7 @@ SECRET_KEY = "django-insecure-pb(0#z3ktd-c3n#)-j#05x59a$yx5zv$+kpy=k!nfe)h+1w-0l
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    "8000-taalverena-natureswhisp-a24xfslu8w0.ws-eu110.gitpod.io",
+    "8000-taalverena-natureswhisp-x42lwxva2jh.ws-eu115.gitpod.io",
     ".herokuapp.com",
 ]
 
