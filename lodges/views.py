@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.paginator import Paginator
+from django.contrib import messages
 from .models import Lodge
 from .forms import LodgeForm
 
@@ -34,11 +35,14 @@ def lodge_detail(request, pk):
 
 
 @login_required
-@user_passes_test(is_staff_user)
 def add_lodge(request):
     """
     Add a new lodge.
     """
+    if not request.user.is_staff:
+        messages.error(request, "You do not have permission to access this page.")
+        return redirect("home")
+
     if request.method == "POST":
         form = LodgeForm(request.POST, request.FILES)
         if form.is_valid():
@@ -50,11 +54,14 @@ def add_lodge(request):
 
 
 @login_required
-@user_passes_test(is_staff_user)
 def edit_lodge(request, pk):
     """
     Edit an existing lodge.
     """
+    if not request.user.is_staff:
+        messages.error(request, "You do not have permission to access this page.")
+        return redirect("home")
+
     lodge = get_object_or_404(Lodge, pk=pk)
     if request.method == "POST":
         form = LodgeForm(request.POST, request.FILES, instance=lodge)
@@ -67,11 +74,14 @@ def edit_lodge(request, pk):
 
 
 @login_required
-@user_passes_test(is_staff_user)
 def delete_lodge(request, pk):
     """
     Delete an existing lodge.
     """
+    if not request.user.is_staff:
+        messages.error(request, "You do not have permission to access this page.")
+        return redirect("home")
+
     lodge = get_object_or_404(Lodge, pk=pk)
     if request.method == "POST":
         lodge.delete()
