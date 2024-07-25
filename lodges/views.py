@@ -1,12 +1,20 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.paginator import Paginator
 from .models import Lodge
+from .forms import LodgeForm
+
+
+def is_staff_user(user):
+    """
+    Check if the user is staff.
+    """
+    return user.is_staff
 
 
 def lodge_list(request):
     """
-    View function to display a list of lodges.
-    Paginates the list to display a maximum of 3 lodges per page.
+    Display a paginated list of lodges.
     """
     lodges_list = Lodge.objects.all().order_by("name")
     paginator = Paginator(lodges_list, 3)
@@ -19,7 +27,53 @@ def lodge_list(request):
 
 def lodge_detail(request, pk):
     """
-    View function to display details of a single lodge.
+    Display details of a single lodge.
     """
     lodge = get_object_or_404(Lodge, pk=pk)
     return render(request, "lodges/lodge_detail.html", {"lodge": lodge})
+
+
+@login_required
+@user_passes_test(is_staff_user)
+def add_lodge(request):
+    """
+    Add a new lodge.
+    """
+    if request.method == "POST":
+        form = LodgeForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect("lodges")
+    else:
+        form = LodgeForm()
+    return render(request, "lodges/lodge_form.html", {"form": form})
+
+
+@login_required
+@user_passes_test(is_staff_user)
+def edit_lodge(request, pk):
+    """
+    Edit an existing lodge.
+    """
+    lodge = get_object_or_404(Lodge, pk=pk)
+    if request.method == "POST":
+        form = LodgeForm(request.POST, request.FILES, instance=lodge)
+        if form.is_valid():
+            form.save()
+            return redirect("lodges")
+    else:
+        form = LodgeForm(instance=lodge)
+    return render(request, "lodges/lodge_form.html", {"form": form})
+
+
+@login_required
+@user_passes_test(is_staff_user)
+def delete_lodge(request, pk):
+    """
+    Delete an existing lodge.
+    """
+    lodge = get_object_or_404(Lodge, pk=pk)
+    if request.method == "POST":
+        lodge.delete()
+        return redirect("lodges")
+    return render(request, "lodges/lodge_confirm_delete.html", {"lodge": lodge})

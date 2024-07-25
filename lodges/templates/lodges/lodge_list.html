@@ -6,6 +6,14 @@
 <main role="main" class="container">
     <!-- Main heading -->
     <h1 class="text-center my-4">Our Lodges</h1>
+
+    <!-- Add Lodge button for staff users -->
+    {% if user.is_staff %}
+    <div class="text-center mb-4">
+        <a href="{% url 'add_lodge' %}" class="btn btn-success">Add New Lodge</a>
+    </div>
+    {% endif %}
+
     {% for lodge in page_obj %}
     <section class="lodge-section my-5">
         <div class="row">
@@ -37,8 +45,10 @@
                     aria-label="Make a Reservation for {{ lodge.name }}">Make a Reservation</a>
                 <!-- Edit button (for staff users) -->
                 {% if user.is_staff %}
-                <a href="{% url 'admin:lodges_lodge_change' lodge.id %}" class="btn btn-danger"
+                <a href="{% url 'edit_lodge' lodge.id %}" class="btn btn-warning"
                     aria-label="Edit {{ lodge.name }}">Edit</a>
+                <a href="{% url 'delete_lodge' lodge.id %}" class="btn btn-danger"
+                    aria-label="Delete {{ lodge.name }}">Delete</a>
                 {% endif %}
             </div>
             <hr class="mt-4">
