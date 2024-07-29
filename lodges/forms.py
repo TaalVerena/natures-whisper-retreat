@@ -1,5 +1,6 @@
 from django import forms
 from .models import Lodge
+from django_summernote.widgets import SummernoteWidget
 
 
 class LodgeForm(forms.ModelForm):
@@ -23,3 +24,7 @@ class LodgeForm(forms.ModelForm):
             "sleeps",
             "rate",
         ]
+        widgets = {
+            "description": SummernoteWidget(),
+            "amenities": SummernoteWidget(),
+        }
