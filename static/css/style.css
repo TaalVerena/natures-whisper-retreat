@@ -156,3 +156,17 @@ a {
         flex-direction: column;
     }
 }
+
+/* Overlay messages */
+.overlay-messages {
+    position: fixed;
+    top: 60px;
+    right: 20px;
+    z-index: 1050;
+    width: 300px;
+}
+
+.overlay-messages .alert {
+    margin-bottom: 10px;
+    opacity: 0.9;
+}
