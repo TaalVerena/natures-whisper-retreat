@@ -18,7 +18,7 @@
           <p class="card-text">{{ lodge.description }}</p>
           <!-- Edit button for staff users -->
           {% if user.is_staff %}
-          <a href="{% url 'admin:home_lodgeoverview_change' lodge.id %}" class="btn btn-danger">Edit</a>
+          <a href="{% url 'edit_lodge_overview' lodge.id %}" class="btn btn-danger">Edit</a>
           {% endif %}
         </div>
       </div>

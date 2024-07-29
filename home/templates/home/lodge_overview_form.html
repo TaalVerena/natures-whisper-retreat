@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+{{ block.super }}
+<link href="{% static 'django_summernote/summernote-bs4.css' %}" rel="stylesheet">
+<script src="{% static 'django_summernote/jquery.js' %}"></script>
+<script src="{% static 'django_summernote/bootstrap.js' %}"></script>
+<script src="{% static 'django_summernote/summernote-bs4.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<main role="main" class="container">
+    <h1 class="text-center my-4">Edit Lodge Overview</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a href="{% url 'home' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</main>
+{% endblock %}
