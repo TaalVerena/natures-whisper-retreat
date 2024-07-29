@@ -47,6 +47,7 @@ def add_lodge(request):
         form = LodgeForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            messages.success(request, "Lodge added successfully.")
             return redirect("lodges")
     else:
         form = LodgeForm()
@@ -67,6 +68,7 @@ def edit_lodge(request, pk):
         form = LodgeForm(request.POST, request.FILES, instance=lodge)
         if form.is_valid():
             form.save()
+            messages.success(request, "Lodge updated successfully.")
             return redirect("lodges")
     else:
         form = LodgeForm(instance=lodge)
@@ -85,5 +87,6 @@ def delete_lodge(request, pk):
     lodge = get_object_or_404(Lodge, pk=pk)
     if request.method == "POST":
         lodge.delete()
+        messages.success(request, "Lodge deleted successfully.")
         return redirect("lodges")
     return render(request, "lodges/lodge_confirm_delete.html", {"lodge": lodge})
