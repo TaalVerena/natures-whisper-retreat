@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         alert('You cannot book past dates. Please select future dates.');
                         return;
                     }
-                    
+
                     // Check for overlapping bookings
                     var overlapping = false;
                     for (var d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
@@ -48,13 +48,13 @@ document.addEventListener('DOMContentLoaded', function () {
                             break;
                         }
                     }
-                    
+
                     // Display alert if dates overlap with existing bookings
                     if (overlapping) {
                         alert('One or more dates in this range are fully booked with confirmed bookings. Please select another date range.');
                         return;
                     }
-                    
+
                     // Populate start_date and end_date fields in the form
                     document.querySelector('input[name="start_date"]').value = info.startStr;
                     document.querySelector('input[name="end_date"]').value = info.endStr;
