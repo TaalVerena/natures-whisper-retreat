@@ -64,9 +64,8 @@
                             </li>
                             {% if user.is_authenticated %}
                             {% if user.is_staff %}
-                            <a class="nav-link {% if request.path == '/admin/reservations/reservation' %}active{% endif %}"
-                                href="{% url 'admin:reservations_reservation_changelist' %}"
-                                aria-label="Lodge Bookings">Lodge Bookings</a>
+                            <a class="nav-link {% if request.path == '/dashboard/reservations/' %}active{% endif %}"
+                                href="{% url 'reservation_list' %}" aria-label="Lodge Bookings">Lodge Bookings</a>
                             {% else %}
                             <a class="nav-link {% if request.path == '/dashboard/' %}active{% endif %}"
                                 href="{% url 'dashboard' %}" aria-label="My Bookings">My Bookings</a>
