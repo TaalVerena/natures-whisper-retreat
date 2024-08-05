@@ -1,4 +1,5 @@
-from django.views.generic import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import CreateView
+from django.views.generic import UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from django.contrib import messages
@@ -40,7 +41,6 @@ class ContactUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = ContactRequest
     form_class = ContactForm
     template_name = "contact/edit_contact_request.html"
-    success_url = reverse_lazy("dashboard")
 
     def test_func(self):
         """Allow staff to edit any request, and users to edit their own requests."""
@@ -57,13 +57,18 @@ class ContactUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         )
         return super().form_valid(form)
 
+    def get_success_url(self):
+        """Redirect staff to reservation list, users to their dashboard."""
+        if self.request.user.is_staff:
+            return reverse_lazy("reservation_list")
+        return reverse_lazy("dashboard")
+
 
 class ContactDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     """A view for deleting contact requests."""
 
     model = ContactRequest
     template_name = "contact/delete_contact_request.html"
-    success_url = reverse_lazy("dashboard")
 
     def test_func(self):
         """Allow staff to delete any request, and users to delete their own requests."""
@@ -79,3 +84,9 @@ class ContactDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             self.request, "The contact request has been deleted successfully."
         )
         return super().delete(request, *args, **kwargs)
+
+    def get_success_url(self):
+        """Redirect staff to reservation list, users to their dashboard."""
+        if self.request.user.is_staff:
+            return reverse_lazy("reservation_list")
+        return reverse_lazy("dashboard")
