@@ -1,7 +1,8 @@
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from datetime import datetime
 from reservations.models import Reservation
+from .forms import ReservationForm, ChangeStatusForm
 from contact.forms import ContactForm
 
 
@@ -71,3 +72,31 @@ def reservation_list(request):
             "past_reservations": past_reservations,
         },
     )
+
+
+@login_required
+@user_passes_test(is_staff_user)
+def edit_reservation(request, pk):
+    reservation = get_object_or_404(Reservation, pk=pk)
+    if request.method == "POST":
+        form = ReservationForm(request.POST, instance=reservation)
+        if form.is_valid():
+            form.save()
+            return redirect("reservation_list")
+    else:
+        form = ReservationForm(instance=reservation)
+    return render(request, "dashboard/edit_reservation.html", {"form": form})
+
+
+@login_required
+@user_passes_test(is_staff_user)
+def change_reservation_status(request, pk):
+    reservation = get_object_or_404(Reservation, pk=pk)
+    if request.method == "POST":
+        form = ChangeStatusForm(request.POST, instance=reservation)
+        if form.is_valid():
+            form.save()
+            return redirect("reservation_list")
+    else:
+        form = ChangeStatusForm(instance=reservation)
+    return render(request, "dashboard/change_status.html", {"form": form})

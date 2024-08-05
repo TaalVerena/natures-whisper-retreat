@@ -15,7 +15,6 @@
 <div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-md-10">
-
             <!-- Accordion container for organization -->
             <div class="accordion" id="bookingsAccordion">
                 <!-- Upcoming Reservations Panel -->
@@ -38,6 +37,7 @@
                                         <th>Check-in Date</th>
                                         <th>Check-out Date</th>
                                         <th>Status</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -48,6 +48,16 @@
                                         <td>{{ reservation.start_date }}</td>
                                         <td>{{ reservation.end_date }}</td>
                                         <td>{{ reservation.get_status_display }}</td>
+                                        <td>
+                                            <a href="{% url 'edit_reservation' reservation.id %}"
+                                                class="btn btn-primary btn-sm">Edit</a>
+                                            <a href="{% url 'change_status' reservation.id %}"
+                                                class="btn btn-secondary btn-sm">Change Status</a>
+                                        </td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="6">No upcoming reservations.</td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
@@ -76,6 +86,7 @@
                                         <th>Check-in Date</th>
                                         <th>Check-out Date</th>
                                         <th>Status</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -86,6 +97,16 @@
                                         <td>{{ reservation.start_date }}</td>
                                         <td>{{ reservation.end_date }}</td>
                                         <td>{{ reservation.get_status_display }}</td>
+                                        <td>
+                                            <a href="{% url 'edit_reservation' reservation.id %}"
+                                                class="btn btn-primary btn-sm">Edit</a>
+                                            <a href="{% url 'change_status' reservation.id %}"
+                                                class="btn btn-secondary btn-sm">Change Status</a>
+                                        </td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="6">No past reservations.</td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
