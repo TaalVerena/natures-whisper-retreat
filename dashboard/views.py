@@ -98,6 +98,9 @@ def edit_reservation(request, pk):
         form = ReservationForm(request.POST, instance=reservation)
         if form.is_valid():
             form.save()
+            messages.success(
+                request, "Reservation edited successfully."
+            )
             return redirect("reservation_list")
     else:
         form = ReservationForm(instance=reservation)
@@ -112,6 +115,7 @@ def change_reservation_status(request, pk):
         form = ChangeStatusForm(request.POST, instance=reservation)
         if form.is_valid():
             form.save()
+            messages.success(request, "Reservation status changed successfully.")
             return redirect("reservation_list")
     else:
         form = ChangeStatusForm(instance=reservation)
