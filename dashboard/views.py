@@ -29,8 +29,9 @@ def dashboard(request):
     user = request.user
     current_date = datetime.now().date()
 
+    # Include all statuses for upcoming reservations
     upcoming_reservations = Reservation.objects.filter(
-        user=user, start_date__gte=current_date, status=Reservation.Status.CONFIRMED
+        user=user, start_date__gte=current_date
     ).order_by("start_date")
 
     past_reservations = Reservation.objects.filter(

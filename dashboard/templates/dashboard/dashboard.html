@@ -36,6 +36,7 @@
                                     <a href="{% url 'reservation_confirmation' reservation.id %}">
                                         {{ reservation.start_date }} to {{ reservation.end_date }} at {{ reservation.lodge.name }}
                                     </a>
+                                    <span class="badge bg-info float-end">{{ reservation.get_status_display }}</span>
                                 </li>
                                 {% endfor %}
                             </ul>
@@ -60,7 +61,10 @@
                             {% if past_reservations %}
                             <ul class="list-group list-group-flush">
                                 {% for reservation in past_reservations %}
-                                <li class="list-group-item">{{ reservation.start_date }} to {{ reservation.end_date }} at {{ reservation.lodge.name }}</li>
+                                <li class="list-group-item">
+                                    {{ reservation.start_date }} to {{ reservation.end_date }} at {{ reservation.lodge.name }}
+                                    <span class="badge bg-info float-end">{{ reservation.get_status_display }}</span>
+                                </li>
                                 {% endfor %}
                             </ul>
                             {% else %}

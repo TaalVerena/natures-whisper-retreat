@@ -16,12 +16,5 @@
         <button type="submit" name="cancel" class="btn btn-danger">Cancel Reservation</button>
     </form>
 
-    {% if messages %}
-    <div class="mt-4">
-        {% for message in messages %}
-        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-        {% endfor %}
-    </div>
-    {% endif %}
 </div>
 {% endblock %}
