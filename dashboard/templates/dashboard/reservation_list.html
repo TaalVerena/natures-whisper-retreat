@@ -53,6 +53,8 @@
                                                 class="btn btn-primary btn-sm">Edit</a>
                                             <a href="{% url 'change_status' reservation.id %}"
                                                 class="btn btn-secondary btn-sm">Change Status</a>
+                                            <a href="{% url 'delete_reservation' reservation.id %}"
+                                                class="btn btn-danger btn-sm">Delete</a>
                                         </td>
                                     </tr>
                                     {% empty %}

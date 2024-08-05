@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib import messages
 from datetime import datetime
 from reservations.models import Reservation
 from .forms import ReservationForm, ChangeStatusForm
@@ -71,6 +72,21 @@ def reservation_list(request):
             "upcoming_reservations": upcoming_reservations,
             "past_reservations": past_reservations,
         },
+    )
+
+
+@login_required
+@user_passes_test(is_staff_user)
+def delete_reservation(request, pk):
+    reservation = get_object_or_404(Reservation, pk=pk)
+
+    if request.method == "POST":
+        reservation.delete()
+        messages.success(request, "Reservation deleted successfully.")
+        return redirect("reservation_list")
+
+    return render(
+        request, "dashboard/delete_reservation.html", {"reservation": reservation}
     )
 
 
