@@ -49,9 +49,25 @@ def dashboard(request):
 @user_passes_test(is_staff_user)
 def reservation_list(request):
     """
-    Display a list of reservations for staff users.
+    Display a list of reservations for staff users, categorized as upcoming or past.
     """
-    reservations = Reservation.objects.all().order_by("-start_date")
+    current_date = datetime.now().date()
+
+    # Fetch upcoming reservations (starting today or in the future)
+    upcoming_reservations = Reservation.objects.filter(
+        start_date__gte=current_date
+    ).order_by("start_date")
+
+    # Fetch past reservations (started before today)
+    past_reservations = Reservation.objects.filter(
+        start_date__lt=current_date
+    ).order_by("-start_date")
+
     return render(
-        request, "dashboard/reservation_list.html", {"reservations": reservations}
+        request,
+        "dashboard/reservation_list.html",
+        {
+            "upcoming_reservations": upcoming_reservations,
+            "past_reservations": past_reservations,
+        },
     )

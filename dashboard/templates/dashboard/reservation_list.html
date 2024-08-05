@@ -1,29 +1,105 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<main role="main" class="container">
-    <h1 class="text-center my-4">Lodge Bookings</h1>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Guest</th>
-                <th>Lodge</th>
-                <th>Check-in Date</th>
-                <th>Check-out Date</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for reservation in reservations %}
-            <tr>
-                <td>{{ reservation.user }}</td>
-                <td>{{ reservation.lodge.name }}</td>
-                <td>{{ reservation.start_date }}</td>
-                <td>{{ reservation.end_date }}</td>
-                <td>{{ reservation.get_status_display }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</main>
+<!-- Hero image -->
+<div class="container-fluid p-0" style="padding-top: 100px; padding-bottom: 50px;">
+    <div class="landing-image text-center"
+        style="background-image: url('/static/images/dashboard.webp'); height: 400px; display: flex; justify-content: center; align-items: center;">
+        <div class="text-white py-5">
+            <h1 style="font-family: 'Pacifico', cursive; font-size: 6em;">Lodge Bookings</h1>
+            <h2 style="font-family: 'Arial', sans-serif; font-size: 1.5em;">Manage all Reservations</h2>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+
+            <!-- Accordion container for organization -->
+            <div class="accordion" id="bookingsAccordion">
+                <!-- Upcoming Reservations Panel -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingUpcomingBookings">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseUpcomingBookings" aria-expanded="true"
+                            aria-controls="collapseUpcomingBookings">
+                            Upcoming Reservations
+                        </button>
+                    </h2>
+                    <div id="collapseUpcomingBookings" class="accordion-collapse collapse show"
+                        aria-labelledby="headingUpcomingBookings" data-bs-parent="#bookingsAccordion">
+                        <div class="accordion-body">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Guest</th>
+                                        <th>Lodge</th>
+                                        <th>Check-in Date</th>
+                                        <th>Check-out Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for reservation in upcoming_reservations %}
+                                    <tr>
+                                        <td>{{ reservation.user }}</td>
+                                        <td>{{ reservation.lodge.name }}</td>
+                                        <td>{{ reservation.start_date }}</td>
+                                        <td>{{ reservation.end_date }}</td>
+                                        <td>{{ reservation.get_status_display }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Past Reservations Panel -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingPastBookings">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapsePastBookings" aria-expanded="false"
+                            aria-controls="collapsePastBookings">
+                            Past Reservations
+                        </button>
+                    </h2>
+                    <div id="collapsePastBookings" class="accordion-collapse collapse"
+                        aria-labelledby="headingPastBookings" data-bs-parent="#bookingsAccordion">
+                        <div class="accordion-body">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Guest</th>
+                                        <th>Lodge</th>
+                                        <th>Check-in Date</th>
+                                        <th>Check-out Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for reservation in past_reservations %}
+                                    <tr>
+                                        <td>{{ reservation.user }}</td>
+                                        <td>{{ reservation.lodge.name }}</td>
+                                        <td>{{ reservation.start_date }}</td>
+                                        <td>{{ reservation.end_date }}</td>
+                                        <td>{{ reservation.get_status_display }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Us -->
+            <div class="text-center mt-4">
+                <p>Need assistance? Please <a href="{% url 'contact' %}">reach out</a>.</p>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
