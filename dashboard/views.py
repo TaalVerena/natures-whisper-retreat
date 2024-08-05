@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from datetime import datetime
 from reservations.models import Reservation
-from .forms import ReservationForm, ChangeStatusForm
+from .forms import ReservationForm
 from contact.forms import ContactForm
 
 
