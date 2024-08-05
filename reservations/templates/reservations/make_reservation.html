@@ -2,49 +2,58 @@
 {% load static %}
 
 {% block head %}
-<!-- Include FullCalendar CSS -->
-<link href='https://unpkg.com/@fullcalendar/core@6/main.min.css' rel='stylesheet' />
-<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
-{% endblock %}
-
-{% block scripts %}
-<script>
-    // Pass lodge ID to JavaScript
-    window.lodgeId = "{{ lodge.id }}";
-</script>
-<!-- Include custom JavaScript for calendar functionality -->
-<script src="{% static 'js/calendar.js' %}"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 {% endblock %}
 
 {% block content %}
-<!-- Reservation Section -->
 <div class="container mt-4">
     <h1>Make a Reservation at {{ lodge.name }}</h1>
     <div class="row">
-        <!-- Lodge Image -->
-        <div class="col-md-6">
-            <img src="{{ lodge.image.url }}" alt="{{ lodge.name }}" class="img-fluid">
+        <div class="col-md-6 mb-4">
+            <img src="{{ lodge.image.url }}" alt="{{ lodge.name }}" class="img-fluid rounded">
         </div>
-        <!-- Calendar and Reservation Form -->
         <div class="col-md-6">
-            <!-- Calendar Placeholder -->
-            <div id='calendar' aria-label="Availability Calendar"></div>
-            <div class="col-md-6 mb-4">
-                <!-- Reservation Form -->
-                <form method="post">
-                    {% csrf_token %}
-                    <!-- Include form fields -->
-                    {{ form.as_p }}
-                    <!-- Display number of guests the lodge can sleep -->
-                    <div>Sleeps up to {{ lodge.sleeps }} guests.</div>
-                    <!-- Submit button -->
-                    <button type="submit" class="btn btn-primary mt-4">Book Now</button>
-                </form>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="mt-2">Sleeps up to {{ lodge.sleeps }} guests.</div>
+                <button type="submit" class="btn btn-primary mt-4">Book Now</button>
+            </form>
+            {% if messages %}
+            <div class="mt-4">
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                {% endfor %}
             </div>
+            {% endif %}
         </div>
     </div>
 </div>
 
-<!-- Lodge Data (hidden) -->
-<div id="lodgeData" data-rate="{{ lodge.rate }}" style="display:none;"></div>
+<script>
+$(document).ready(function() {
+    const lodgeId = "{{ lodge.id }}";
+
+    $.getJSON(`/api/booked-dates/${lodgeId}/`, function(bookedDates) {
+        function disableBookedDates(date) {
+            const dateString = $.datepicker.formatDate('yy-mm-dd', date);
+            return [!bookedDates.includes(dateString)];
+        }
+
+        $('input[name="start_date"]').datepicker({
+            dateFormat: 'yy-mm-dd',
+            minDate: 1,
+            beforeShowDay: disableBookedDates
+        });
+
+        $('input[name="end_date"]').datepicker({
+            dateFormat: 'yy-mm-dd',
+            minDate: 1,
+            beforeShowDay: disableBookedDates
+        });
+    });
+});
+</script>
 {% endblock %}

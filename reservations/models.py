@@ -3,17 +3,8 @@ from django.conf import settings
 from lodges.models import Lodge
 from django.core.validators import MinValueValidator
 
-
 class Reservation(models.Model):
-    """
-    Model representing a reservation for a lodge.
-    """
-
     class Status(models.TextChoices):
-        """
-        Choices for reservation status.
-        """
-
         PENDING = "pending", "Pending"
         CONFIRMED = "confirmed", "Confirmed"
         CANCELLED = "cancelled", "Cancelled"
@@ -29,7 +20,4 @@ class Reservation(models.Model):
     )
 
     def __str__(self):
-        """
-        String representation of a reservation.
-        """
         return f"{self.lodge} reservation from {self.start_date} to {self.end_date}, Status: {self.status}"
