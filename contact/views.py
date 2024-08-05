@@ -36,14 +36,17 @@ class ContactCreateView(CreateView):
 
 
 class ContactUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    """A view for updating contact requests."""
-
     model = ContactRequest
     form_class = ContactForm
     template_name = "contact/edit_contact_request.html"
 
+    def get_form_kwargs(self):
+        """Pass the request user to the form."""
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
     def test_func(self):
-        """Allow staff to edit any request, and users to edit their own requests."""
         contact_request = self.get_object()
         return self.request.user.is_staff or contact_request.user == self.request.user
 
@@ -58,7 +61,6 @@ class ContactUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        """Redirect staff to reservation list, users to their dashboard."""
         if self.request.user.is_staff:
             return reverse_lazy("reservation_list")
         return reverse_lazy("dashboard")
