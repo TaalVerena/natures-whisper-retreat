@@ -1,4 +1,6 @@
 from django.urls import path
+from contact.views import ContactUpdateView, ContactDeleteView
+
 from .views import (
     dashboard,
     reservation_list,
@@ -7,6 +9,7 @@ from .views import (
     delete_reservation,
     view_reservation,
 )
+
 
 urlpatterns = [
     path("dashboard/", dashboard, name="dashboard"),
@@ -18,7 +21,15 @@ urlpatterns = [
         delete_reservation,
         name="delete_reservation",
     ),
+    path("view-reservation/<int:pk>/", view_reservation, name="view_reservation"),
     path(
-        "view-reservation/<int:pk>/", view_reservation, name="view_reservation"
+        "contact/edit/<int:pk>/",
+        ContactUpdateView.as_view(),
+        name="edit_contact_request",
+    ),
+    path(
+        "contact/delete/<int:pk>/",
+        ContactDeleteView.as_view(),
+        name="delete_contact_request",
     ),
 ]

@@ -116,6 +116,53 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingUserQueries">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseUserQueries" aria-expanded="false"
+                            aria-controls="collapseUserQueries">
+                            User Queries
+                        </button>
+                    </h2>
+                    <div id="collapseUserQueries" class="accordion-collapse collapse"
+                        aria-labelledby="headingUserQueries" data-bs-parent="#bookingsAccordion">
+                        <div class="accordion-body">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Category</th>
+                                        <th>Message</th>
+                                        <th>Created At</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for query in user_queries %}
+                                    <tr>
+                                        <td>{{ query.user.username }}</td>
+                                        <td>{{ query.get_category_display }}</td>
+                                        <td>{{ query.message }}</td>
+                                        <td>{{ query.created_at|date:"M d, Y H:i" }}</td>
+                                        <td>
+                                            <a href="{% url 'edit_contact_request' query.id %}"
+                                                class="btn btn-primary btn-sm">Edit</a>
+                                            <a href="{% url 'delete_contact_request' query.id %}"
+                                                class="btn btn-danger btn-sm">Delete</a>
+                                        </td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="5">No user queries found.</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
             <!-- Contact Us -->

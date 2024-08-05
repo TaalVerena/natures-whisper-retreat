@@ -1,5 +1,4 @@
-from django.views.generic.edit import CreateView
-from django.views.generic import UpdateView, DeleteView
+from django.views.generic import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from django.contrib import messages
@@ -36,49 +35,47 @@ class ContactCreateView(CreateView):
 
 
 class ContactUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    """A view for updating contact requests."""
+
     model = ContactRequest
     form_class = ContactForm
     template_name = "contact/edit_contact_request.html"
     success_url = reverse_lazy("dashboard")
 
     def test_func(self):
-        """Check if the logged-in user is the owner of the contact request."""
+        """Allow staff to edit any request, and users to edit their own requests."""
         contact_request = self.get_object()
-        return contact_request.user == self.request.user
+        return self.request.user.is_staff or contact_request.user == self.request.user
 
     def handle_no_permission(self):
-        """Handle the case where a user does not have permission to edit."""
         messages.error(self.request, "You do not have permission to access this page.")
         return redirect("dashboard")
 
     def form_valid(self, form):
-        """Add a success message when a contact request is successfully updated."""
         messages.success(
-            self.request, "Your contact request has been updated successfully."
+            self.request, "The contact request has been updated successfully."
         )
         return super().form_valid(form)
 
 
-@method_decorator(login_required, name="dispatch")
 class ContactDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    """A view for deleting contact requests."""
+
     model = ContactRequest
     template_name = "contact/delete_contact_request.html"
     success_url = reverse_lazy("dashboard")
 
-    def get_queryset(self):
-        """Ensure a user can only delete their own queries."""
-        return ContactRequest.objects.filter(user=self.request.user)
-
-    def delete(self, request, *args, **kwargs):
-        messages.debug(self.request, "Starting delete operation.")
-        response = super().delete(request, *args, **kwargs)
-        messages.success(self.request, "Your contact request has been deleted successfully.")
-        return response
-
     def test_func(self):
+        """Allow staff to delete any request, and users to delete their own requests."""
         contact_request = self.get_object()
-        return contact_request.user == self.request.user
+        return self.request.user.is_staff or contact_request.user == self.request.user
 
     def handle_no_permission(self):
         messages.error(self.request, "You do not have permission to access this page.")
         return redirect("dashboard")
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(
+            self.request, "The contact request has been deleted successfully."
+        )
+        return super().delete(request, *args, **kwargs)

@@ -37,7 +37,9 @@ def dashboard(request):
         user=user, start_date__lt=current_date, status=Reservation.Status.CONFIRMED
     ).order_by("-start_date")
 
-    user_contact_requests = ContactRequest.objects.filter(user=user).order_by("-created_at")
+    user_contact_requests = ContactRequest.objects.filter(user=user).order_by(
+        "-created_at"
+    )
 
     contact_form = ContactForm()
 
@@ -67,7 +69,7 @@ def view_reservation(request, pk):
 @user_passes_test(is_staff_user)
 def reservation_list(request):
     """
-    Display a list of reservations for staff users, categorized as upcoming or past.
+    Display a list of reservations and user queries for staff users.
     """
     current_date = datetime.now().date()
 
@@ -81,12 +83,16 @@ def reservation_list(request):
         start_date__lt=current_date
     ).order_by("-start_date")
 
+    # Fetch all user queries
+    user_queries = ContactRequest.objects.all().order_by("-created_at")
+
     return render(
         request,
         "dashboard/reservation_list.html",
         {
             "upcoming_reservations": upcoming_reservations,
             "past_reservations": past_reservations,
+            "user_queries": user_queries,
         },
     )
 
