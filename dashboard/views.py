@@ -4,6 +4,7 @@ from django.contrib import messages
 from datetime import datetime
 from reservations.models import Reservation
 from .forms import ReservationForm
+from contact.models import ContactRequest
 from contact.forms import ContactForm
 
 
@@ -36,12 +37,15 @@ def dashboard(request):
         user=user, start_date__lt=current_date, status=Reservation.Status.CONFIRMED
     ).order_by("-start_date")
 
+    user_contact_requests = ContactRequest.objects.filter(user=user).order_by("-created_at")
+
     contact_form = ContactForm()
 
     context = {
         "upcoming_reservations": upcoming_reservations,
         "past_reservations": past_reservations,
         "contact_form": contact_form,
+        "user_contact_requests": user_contact_requests,
     }
 
     return render(request, "dashboard/dashboard.html", context)
