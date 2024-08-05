@@ -49,6 +49,18 @@ def dashboard(request):
 
 @login_required
 @user_passes_test(is_staff_user)
+def view_reservation(request, pk):
+    """
+    Display the details of a reservation with options to edit, delete, or cancel.
+    """
+    reservation = get_object_or_404(Reservation, pk=pk)
+    return render(
+        request, "dashboard/view_reservation.html", {"reservation": reservation}
+    )
+
+
+@login_required
+@user_passes_test(is_staff_user)
 def reservation_list(request):
     """
     Display a list of reservations for staff users, categorized as upcoming or past.
@@ -98,9 +110,7 @@ def edit_reservation(request, pk):
         form = ReservationForm(request.POST, instance=reservation)
         if form.is_valid():
             form.save()
-            messages.success(
-                request, "Reservation edited successfully."
-            )
+            messages.success(request, "Reservation edited successfully.")
             return redirect("reservation_list")
     else:
         form = ReservationForm(instance=reservation)

@@ -5,6 +5,7 @@ from .views import (
     edit_reservation,
     change_reservation_status,
     delete_reservation,
+    view_reservation,
 )
 
 urlpatterns = [
@@ -16,5 +17,8 @@ urlpatterns = [
         "delete-reservation/<int:pk>/",
         delete_reservation,
         name="delete_reservation",
+    ),
+    path(
+        "view-reservation/<int:pk>/", view_reservation, name="view_reservation"
     ),
 ]
