@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load static %}
 
 {% block content %}
 <div class="container mt-4">
@@ -10,11 +9,14 @@
     <p>Total Nights: {{ reservation.total_nights }}</p>
     <p>Total Cost: ${{ reservation.total_cost }}</p>
 
+    <!-- Confirm and Cancel Buttons -->
     <form method="post">
         {% csrf_token %}
         <button type="submit" name="confirm" class="btn btn-success">Confirm Reservation</button>
         <button type="submit" name="cancel" class="btn btn-danger">Cancel Reservation</button>
     </form>
 
+    <!-- Back Button -->
+    <a href="{{ previous_url }}" class="btn btn-secondary mt-3">Go Back</a>
 </div>
 {% endblock %}

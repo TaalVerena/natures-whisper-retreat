@@ -75,22 +75,24 @@ def reservation_confirmation(request, reservation_id):
     View to handle the confirmation and cancellation of reservations.
     """
     reservation = get_object_or_404(Reservation, id=reservation_id)
+    previous_url = request.META.get("HTTP_REFERER", "/")
+
     if request.method == "POST":
         if "confirm" in request.POST:
             reservation.status = Reservation.Status.CONFIRMED
             reservation.save()
             messages.success(request, "Reservation confirmed!")
-            return redirect("dashboard")  # Redirect to dashboard after confirmation
+            return redirect("dashboard")
         elif "cancel" in request.POST:
             reservation.status = Reservation.Status.CANCELLED
             reservation.save()
             messages.info(request, "Reservation cancelled.")
-            return redirect("dashboard")  # Redirect to dashboard after cancellation
+            return redirect("dashboard")
 
     return render(
         request,
         "reservations/reservation_confirmation.html",
-        {"reservation": reservation},
+        {"reservation": reservation, "previous_url": previous_url},
     )
 
 
