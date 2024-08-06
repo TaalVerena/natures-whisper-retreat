@@ -5,6 +5,7 @@ from django.http import JsonResponse
 from datetime import date, timedelta
 from .forms import ReservationForm
 from lodges.models import Lodge
+from django.utils import timezone
 from .models import Reservation
 
 
@@ -76,24 +77,54 @@ def reservation_confirmation(request, reservation_id):
     """
     reservation = get_object_or_404(Reservation, id=reservation_id)
     previous_url = request.META.get("HTTP_REFERER", "/")
+    today = timezone.now().date()
+
+    # Debugging: Log reservation details and current date
+    print(f"Debug: Reservation ID: {reservation.id}")
+    print(f"Debug: Reservation Status: {reservation.status}")
+    print(f"Debug: Reservation Start Date: {reservation.start_date}")
+    print(f"Debug: Today's Date: {today}")
+
+    # Check if the reservation can be edited or canceled
+    is_editable = (
+        reservation.status != Reservation.Status.CANCELLED
+        and reservation.start_date > today
+    )
+
+    # Debugging: Log whether the reservation is editable
+    print(f"Debug: Is Editable: {is_editable}")
 
     if request.method == "POST":
-        if "confirm" in request.POST:
-            reservation.status = Reservation.Status.CONFIRMED
-            reservation.save()
-            messages.success(request, "Reservation confirmed!")
-            return redirect("dashboard")
-        elif "cancel" in request.POST:
-            reservation.status = Reservation.Status.CANCELLED
-            reservation.save()
-            messages.info(request, "Reservation cancelled.")
+        if is_editable:
+            if "confirm" in request.POST:
+                reservation.status = Reservation.Status.CONFIRMED
+                reservation.save()
+                messages.success(request, "Reservation confirmed!")
+                print("Debug: Reservation confirmed.")
+                return redirect("dashboard")
+            elif "cancel" in request.POST:
+                reservation.status = Reservation.Status.CANCELLED
+                reservation.save()
+                messages.info(request, "Reservation cancelled.")
+                print("Debug: Reservation cancelled.")
+                return redirect("dashboard")
+        else:
+            messages.error(request, "This reservation cannot be edited or cancelled.")
+            print("Debug: Attempted to edit or cancel a non-editable reservation.")
             return redirect("dashboard")
 
-    return render(
-        request,
-        "reservations/reservation_confirmation.html",
-        {"reservation": reservation, "previous_url": previous_url},
+    context = {
+        "reservation": reservation,
+        "is_editable": is_editable,
+        "previous_url": previous_url,
+    }
+
+    # Debugging: Log the context being passed to the template
+    print(
+        f"Debug: Context - Reservation: {reservation}, Is Editable: {is_editable}, Previous URL: {previous_url}"
     )
+
+    return render(request, "reservations/reservation_confirmation.html", context)
 
 
 def get_booked_dates(request, lodge_id):

@@ -2,21 +2,29 @@
 
 {% block content %}
 <div class="container mt-4">
-    <h1>Reservation Confirmation</h1>
-    <p>Lodge: {{ reservation.lodge.name }}</p>
-    <p>Check-in Date: {{ reservation.start_date }}</p>
-    <p>Check-out Date: {{ reservation.end_date }}</p>
-    <p>Total Nights: {{ reservation.total_nights }}</p>
-    <p>Total Cost: ${{ reservation.total_cost }}</p>
+    <h1>Reservation Details</h1>
 
-    <!-- Confirm and Cancel Buttons -->
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit" name="confirm" class="btn btn-success">Confirm Reservation</button>
-        <button type="submit" name="cancel" class="btn btn-danger">Cancel Reservation</button>
-    </form>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Reservation from {{ reservation.start_date }} to {{ reservation.end_date }}</h5>
+            <p class="card-text">Lodge: {{ reservation.lodge.name }}</p>
+            <p class="card-text">Status: {{ reservation.get_status_display }}</p>
+            <p class="card-text">Total Cost: {{ reservation.total_cost }}</p>
 
-    <!-- Back Button -->
-    <a href="{{ previous_url }}" class="btn btn-secondary mt-3">Go Back</a>
+            {% if is_editable %}
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" name="confirm" class="btn btn-success">Confirm Reservation</button>
+                <button type="submit" name="cancel" class="btn btn-danger">Cancel Reservation</button>
+            </form>
+            {% else %}
+            <p class="text-warning">This reservation cannot be edited or cancelled. If you have any questions, please
+                contact us.</p>
+            <a href="{% url 'contact' %}" class="btn btn-primary">Contact Us</a>
+            {% endif %}
+
+            <a href="javascript:history.back()" class="btn btn-secondary mt-3">Go Back</a>
+        </div>
+    </div>
 </div>
 {% endblock %}
