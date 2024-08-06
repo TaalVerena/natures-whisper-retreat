@@ -33,27 +33,27 @@
 </div>
 
 <script>
-$(document).ready(function() {
-    const lodgeId = "{{ lodge.id }}";
+    $(document).ready(function () {
+        const lodgeId = "{{ lodge.id }}";
 
-    $.getJSON(`/api/booked-dates/${lodgeId}/`, function(bookedDates) {
-        function disableBookedDates(date) {
-            const dateString = $.datepicker.formatDate('yy-mm-dd', date);
-            return [!bookedDates.includes(dateString)];
-        }
+        $.getJSON(`/api/booked-dates/${lodgeId}/`, function (bookedDates) {
+            function disableBookedDates(date) {
+                const dateString = $.datepicker.formatDate('yy-mm-dd', date);
+                return [!bookedDates.includes(dateString)];
+            }
 
-        $('input[name="start_date"]').datepicker({
-            dateFormat: 'yy-mm-dd',
-            minDate: 1,
-            beforeShowDay: disableBookedDates
-        });
+            $('input[name="start_date"]').datepicker({
+                dateFormat: 'yy-mm-dd',
+                minDate: 1,
+                beforeShowDay: disableBookedDates
+            });
 
-        $('input[name="end_date"]').datepicker({
-            dateFormat: 'yy-mm-dd',
-            minDate: 1,
-            beforeShowDay: disableBookedDates
+            $('input[name="end_date"]').datepicker({
+                dateFormat: 'yy-mm-dd',
+                minDate: 1,
+                beforeShowDay: disableBookedDates
+            });
         });
     });
-});
 </script>
 {% endblock %}

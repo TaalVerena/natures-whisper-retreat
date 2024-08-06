@@ -98,7 +98,7 @@ def reservation_confirmation(request, reservation_id):
 
 def get_booked_dates(request, lodge_id):
     """
-    View to fetch booked dates for a lodge.
+    View to fetch booked dates for a lodge, including pending reservations.
 
     Args:
         request (HttpRequest): The request object.
@@ -109,7 +109,12 @@ def get_booked_dates(request, lodge_id):
     """
     today = date.today()
     reservations = Reservation.objects.filter(
-        lodge_id=lodge_id, end_date__gte=today, status=Reservation.Status.CONFIRMED
+        lodge_id=lodge_id,
+        end_date__gte=today,
+        status__in=[
+            Reservation.Status.CONFIRMED,
+            Reservation.Status.PENDING,
+        ],
     )
     booked_dates = []
 
