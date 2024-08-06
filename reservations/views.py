@@ -7,6 +7,7 @@ from .forms import ReservationForm
 from lodges.models import Lodge
 from .models import Reservation
 
+
 @login_required
 def make_reservation(request, lodge_id):
     lodge = get_object_or_404(Lodge, pk=lodge_id)
@@ -24,14 +25,22 @@ def make_reservation(request, lodge_id):
         # Ensure start date is not in the past or today
         if reservation.start_date <= date.today():
             messages.error(request, "Start date cannot be today or in the past.")
-            return render(request, "reservations/make_reservation.html", {"form": form, "lodge": lodge})
+            return render(
+                request,
+                "reservations/make_reservation.html",
+                {"form": form, "lodge": lodge},
+            )
 
         # Calculate total cost based on lodge's rate
         if reservation.total_nights > 0:
             reservation.total_cost = lodge.rate * reservation.total_nights
         else:
             messages.error(request, "Check-out date must be after check-in date.")
-            return render(request, "reservations/make_reservation.html", {"form": form, "lodge": lodge})
+            return render(
+                request,
+                "reservations/make_reservation.html",
+                {"form": form, "lodge": lodge},
+            )
 
         # Check for double booking
         conflicting_reservations = Reservation.objects.filter(
@@ -43,13 +52,21 @@ def make_reservation(request, lodge_id):
 
         if conflicting_reservations.exists():
             messages.error(request, "Selected dates overlap with an existing booking.")
-            return render(request, "reservations/make_reservation.html", {"form": form, "lodge": lodge})
+            return render(
+                request,
+                "reservations/make_reservation.html",
+                {"form": form, "lodge": lodge},
+            )
 
         reservation.save()
-        messages.success(request, "Your reservation has been submitted and is pending confirmation.")
+        messages.success(
+            request, "Your reservation has been submitted and is pending confirmation."
+        )
         return redirect("reservation_confirmation", reservation_id=reservation.id)
 
-    return render(request, "reservations/make_reservation.html", {"form": form, "lodge": lodge})
+    return render(
+        request, "reservations/make_reservation.html", {"form": form, "lodge": lodge}
+    )
 
 
 @login_required
@@ -63,14 +80,18 @@ def reservation_confirmation(request, reservation_id):
             reservation.status = Reservation.Status.CONFIRMED
             reservation.save()
             messages.success(request, "Reservation confirmed!")
-            return redirect("home")
+            return redirect("dashboard")  # Redirect to dashboard after confirmation
         elif "cancel" in request.POST:
             reservation.status = Reservation.Status.CANCELLED
             reservation.save()
             messages.info(request, "Reservation cancelled.")
-            return redirect("home")
+            return redirect("dashboard")  # Redirect to dashboard after cancellation
 
-    return render(request, "reservations/reservation_confirmation.html", {"reservation": reservation})
+    return render(
+        request,
+        "reservations/reservation_confirmation.html",
+        {"reservation": reservation},
+    )
 
 
 def get_booked_dates(request, lodge_id):
@@ -86,9 +107,7 @@ def get_booked_dates(request, lodge_id):
     """
     today = date.today()
     reservations = Reservation.objects.filter(
-        lodge_id=lodge_id,
-        end_date__gte=today,
-        status=Reservation.Status.CONFIRMED
+        lodge_id=lodge_id, end_date__gte=today, status=Reservation.Status.CONFIRMED
     )
     booked_dates = []
 
