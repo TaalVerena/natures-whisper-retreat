@@ -3,10 +3,14 @@
 {% block content %}
 <div class="container">
     <h2>Edit Reservation</h2>
+    <!-- Form to edit reservation details -->
     <form method="post">
         {% csrf_token %}
+        <!-- Render the form fields as paragraphs -->
         {{ form.as_p }}
+        <!-- Submit button to save changes -->
         <button type="submit" class="btn btn-primary">Save changes</button>
+        <!-- Cancel button to return to the reservation list -->
         <a href="{% url 'reservation_list' %}" class="btn btn-secondary">Cancel</a>
     </form>
 </div>

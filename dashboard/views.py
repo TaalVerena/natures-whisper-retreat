@@ -61,6 +61,13 @@ def dashboard(request):
 def view_reservation(request, pk):
     """
     Display the details of a reservation with options to edit, delete, or cancel.
+
+    Parameters:
+        request (HttpRequest): The HTTP request object.
+        pk (int): Primary key of the reservation.
+
+    Returns:
+        HttpResponse: Rendered HTML template with reservation details.
     """
     reservation = get_object_or_404(Reservation, pk=pk)
     return render(
@@ -73,6 +80,12 @@ def view_reservation(request, pk):
 def reservation_list(request):
     """
     Display a list of reservations and user queries for staff users.
+
+    Parameters:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: Rendered HTML template with a list of reservations and queries.
     """
     current_date = datetime.now().date()
 
@@ -103,6 +116,16 @@ def reservation_list(request):
 @login_required
 @user_passes_test(is_staff_user)
 def delete_reservation(request, pk):
+    """
+    Delete a reservation if confirmed by the staff user.
+
+    Parameters:
+        request (HttpRequest): The HTTP request object.
+        pk (int): Primary key of the reservation to delete.
+
+    Returns:
+        HttpResponse: Redirects to reservation list after deletion or renders confirmation page.
+    """
     reservation = get_object_or_404(Reservation, pk=pk)
 
     if request.method == "POST":
@@ -118,6 +141,16 @@ def delete_reservation(request, pk):
 @login_required
 @user_passes_test(is_staff_user)
 def edit_reservation(request, pk):
+    """
+    Edit details of an existing reservation by staff.
+
+    Parameters:
+        request (HttpRequest): The HTTP request object.
+        pk (int): Primary key of the reservation to edit.
+
+    Returns:
+        HttpResponse: Redirects to reservation list after editing or renders edit form.
+    """
     reservation = get_object_or_404(Reservation, pk=pk)
     if request.method == "POST":
         form = ReservationForm(request.POST, instance=reservation)
@@ -133,6 +166,16 @@ def edit_reservation(request, pk):
 @login_required
 @user_passes_test(is_staff_user)
 def change_reservation_status(request, pk):
+    """
+    Change the status of a reservation by staff.
+
+    Parameters:
+        request (HttpRequest): The HTTP request object.
+        pk (int): Primary key of the reservation to change status.
+
+    Returns:
+        HttpResponse: Redirects to reservation list after status change or renders status form.
+    """
     reservation = get_object_or_404(Reservation, pk=pk)
     if request.method == "POST":
         form = ChangeStatusForm(request.POST, instance=reservation)
@@ -147,6 +190,15 @@ def change_reservation_status(request, pk):
 
 @login_required
 def profile_view(request):
+    """
+    Display and update the user's profile information.
+
+    Parameters:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: Redirects to profile after updating or renders profile form.
+    """
     if request.method == "POST":
         form = ProfileForm(request.POST, instance=request.user)
         if form.is_valid():

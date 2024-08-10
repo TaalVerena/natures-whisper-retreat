@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<!-- Hero image -->
+<!-- Hero image section with welcome message -->
 <div class="container-fluid p-0" style="padding-top: 100px; padding-bottom: 50px;">
     <div class="landing-image text-center"
         style="background-image: url('/static/images/dashboard.webp'); height: 400px; display: flex; justify-content: center; align-items: center;">
@@ -16,7 +16,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
 
-            <!-- Accordion container -->
+            <!-- Accordion container for reservations -->
             <div class="accordion" id="reservationsAccordion">
                 <!-- Upcoming Reservations Panel -->
                 <div class="accordion-item">
@@ -75,7 +75,7 @@
                 </div>
             </div>
 
-            <!-- User Queries Panel -->
+            <!-- Accordion for user queries -->
             <div class="accordion mt-4" id="queriesAccordion">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingQueries">
@@ -113,7 +113,7 @@
                 </div>
             </div>
 
-            <!-- Contact Us -->
+            <!-- Contact Us prompt -->
             <div class="text-center mt-4">
                 <p>Want to change or cancel your booking? Please <a href="{% url 'contact' %}">reach out</a>.</p>
             </div>

@@ -3,10 +3,14 @@
 {% block content %}
 <div class="container mt-4">
     <h2>Confirm Deletion</h2>
+    <!-- Confirmation message for deleting a reservation -->
     <p>Are you sure you want to delete the reservation for {{ reservation.lodge.name }} from {{ reservation.start_date }} to {{ reservation.end_date }}?</p>
+    <!-- Form to confirm deletion with CSRF protection -->
     <form method="post">
         {% csrf_token %}
+        <!-- Submit button to confirm deletion -->
         <button type="submit" class="btn btn-danger">Delete</button>
+        <!-- Cancel button to return to the reservation list -->
         <a href="{% url 'reservation_list' %}" class="btn btn-secondary">Cancel</a>
     </form>
 </div>

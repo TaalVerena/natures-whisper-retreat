@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<!-- Hero image -->
+<!-- Hero image with page title -->
 <div class="container-fluid p-0" style="padding-top: 100px; padding-bottom: 50px;">
     <div class="landing-image text-center"
         style="background-image: url('/static/images/dashboard.webp'); height: 400px; display: flex; justify-content: center; align-items: center;">
@@ -15,8 +15,9 @@
 <div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-md-10">
-            <!-- Accordion container for organization -->
+            <!-- Accordion container for organizing content -->
             <div class="accordion" id="bookingsAccordion">
+
                 <!-- Upcoming Reservations Panel -->
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingUpcomingBookings">
@@ -41,6 +42,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <!-- Loop through upcoming reservations -->
                                     {% for reservation in upcoming_reservations %}
                                     <tr>
                                         <td>{{ reservation.user }}</td>
@@ -58,6 +60,7 @@
                                         </td>
                                     </tr>
                                     {% empty %}
+                                    <!-- Message when no upcoming reservations exist -->
                                     <tr>
                                         <td colspan="6">No upcoming reservations.</td>
                                     </tr>
@@ -92,6 +95,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <!-- Loop through past reservations -->
                                     {% for reservation in past_reservations %}
                                     <tr>
                                         <td>{{ reservation.user }}</td>
@@ -107,6 +111,7 @@
                                         </td>
                                     </tr>
                                     {% empty %}
+                                    <!-- Message when no past reservations exist -->
                                     <tr>
                                         <td colspan="6">No past reservations.</td>
                                     </tr>
@@ -117,6 +122,7 @@
                     </div>
                 </div>
 
+                <!-- User Queries Panel -->
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingUserQueries">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -139,6 +145,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <!-- Loop through user queries -->
                                     {% for query in user_queries %}
                                     <tr>
                                         <td>{{ query.user.username }}</td>
@@ -153,6 +160,7 @@
                                         </td>
                                     </tr>
                                     {% empty %}
+                                    <!-- Message when no user queries exist -->
                                     <tr>
                                         <td colspan="5">No user queries found.</td>
                                     </tr>
@@ -165,7 +173,7 @@
 
             </div>
 
-            <!-- Contact Us -->
+            <!-- Contact Us prompt -->
             <div class="text-center mt-4">
                 <p>Need assistance? Please <a href="{% url 'contact' %}">reach out</a>.</p>
             </div>

@@ -12,6 +12,7 @@ from .views import (
 )
 
 
+# URL patterns for dashboard and reservation-related views
 urlpatterns = [
     path("dashboard/", dashboard, name="dashboard"),
     path("dashboard/reservations/", reservation_list, name="reservation_list"),
