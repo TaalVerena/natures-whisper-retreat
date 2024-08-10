@@ -65,7 +65,7 @@
                             {% if user.is_authenticated %}
                             {% if user.is_staff %}
                             <a class="nav-link {% if request.path == '/dashboard/reservations/' %}active{% endif %}"
-                                href="{% url 'reservation_list' %}" aria-label="Lodge Bookings">Lodge Bookings</a>
+                                href="{% url 'reservation_list' %}" aria-label="Lodge Bookings">Lodge Bookings & Queries</a>
                             {% else %}
                             <a class="nav-link {% if request.path == '/dashboard/' %}active{% endif %}"
                                 href="{% url 'dashboard' %}" aria-label="My Bookings">My Bookings & Queries</a>
@@ -86,18 +86,11 @@
                                 href="{% url 'account_logout' %}" aria-label="Logout">Logout</a>
                         </li>
                         {% if user.is_authenticated %}
-                        {% if user.is_staff %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'admin:index' %}" aria-label="Admin Panel"><i
-                                    class="fas fa-user"></i> {{ user.username }} </a>
-                        </li>
-                        {% else %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'profile' %}" aria-label="User Profile">
                                 <i class="fas fa-user"></i> {{ user.username }}
                             </a>
                         </li>
-                        {% endif %}
                         {% endif %}
                         {% else %}
                         <li class="nav-item">
