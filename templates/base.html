@@ -93,8 +93,9 @@
                         </li>
                         {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'dashboard' %}" aria-label="User Dashboard"><i
-                                    class="fas fa-user"></i> {{ user.username }} </a>
+                            <a class="nav-link" href="{% url 'profile' %}" aria-label="User Profile">
+                                <i class="fas fa-user"></i> {{ user.username }}
+                            </a>
                         </li>
                         {% endif %}
                         {% endif %}

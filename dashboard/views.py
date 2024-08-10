@@ -6,6 +6,8 @@ from reservations.models import Reservation
 from .forms import ReservationForm
 from contact.models import ContactRequest
 from contact.forms import ContactForm
+from django.contrib.auth.models import User
+from .forms import ProfileForm
 
 
 def is_staff_user(user):
@@ -141,3 +143,17 @@ def change_reservation_status(request, pk):
     else:
         form = ChangeStatusForm(instance=reservation)
     return render(request, "dashboard/change_status.html", {"form": form})
+
+
+@login_required
+def profile_view(request):
+    if request.method == "POST":
+        form = ProfileForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Your profile has been updated successfully.")
+            return redirect("profile")
+    else:
+        form = ProfileForm(instance=request.user)
+
+    return render(request, "dashboard/profile.html", {"form": form})

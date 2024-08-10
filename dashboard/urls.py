@@ -8,6 +8,7 @@ from .views import (
     change_reservation_status,
     delete_reservation,
     view_reservation,
+    profile_view,
 )
 
 
@@ -32,4 +33,5 @@ urlpatterns = [
         ContactDeleteView.as_view(),
         name="delete_contact_request",
     ),
+    path("profile/", profile_view, name="profile"),
 ]
