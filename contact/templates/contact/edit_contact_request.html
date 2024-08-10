@@ -8,19 +8,28 @@
             <h2>Edit Your Query</h2>
             <form method="post" class="mt-4">
                 {% csrf_token %}
+
+                <!-- Loop through form fields and render each -->
                 {% for field in form %}
                 <div class="mb-3">
                     <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
                     {% render_field field class="form-control" %}
+
+                    <!-- Display help text if available -->
                     {% if field.help_text %}
                     <div class="form-text">{{ field.help_text }}</div>
                     {% endif %}
+
+                    <!-- Display validation errors if present -->
                     {% for error in field.errors %}
                     <div class="alert alert-danger">{{ error }}</div>
                     {% endfor %}
                 </div>
                 {% endfor %}
+
+                <!-- Button to submit form changes -->
                 <button type="submit" class="btn btn-primary">Save Changes</button>
+                <!-- Link to cancel editing and return to dashboard -->
                 <a href="{% url 'dashboard' %}" class="btn btn-secondary">Cancel</a>
             </form>
         </div>

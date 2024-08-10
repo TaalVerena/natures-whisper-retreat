@@ -1,10 +1,8 @@
 from django.shortcuts import render
 
 
-# Create your views here.
 def about_view(request):
     """
-    Renders the about page.
-
+    Render the 'about' page template.
     """
     return render(request, "about/about.html")

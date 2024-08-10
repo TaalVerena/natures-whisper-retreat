@@ -6,6 +6,7 @@ from .views import (
     ContactDeleteView,
 )
 
+# URL patterns for contact-related views
 urlpatterns = [
     path("contact/", ContactCreateView.as_view(), name="contact"),
     path(

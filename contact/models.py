@@ -3,7 +3,9 @@ from django.contrib.auth.models import User
 
 
 class ContactRequest(models.Model):
-    """Model to store contact requests."""
+    """
+    Model to store contact requests.
+    """
 
     CATEGORY_CHOICES = [
         ("general", "General Query"),
@@ -28,5 +30,7 @@ class ContactRequest(models.Model):
     lodge_reply = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        """Return a string representation of the contact request."""
+        """
+        Return a string representation of the contact request.
+        """
         return f"{self.name} - {self.category}"
