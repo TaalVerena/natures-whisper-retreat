@@ -14,9 +14,11 @@ class ContactForm(forms.ModelForm):
         user = kwargs.pop("user", None)
         super(ContactForm, self).__init__(*args, **kwargs)
 
+        # Make the 'name' and 'email' fields not required
         self.fields["name"].required = False
         self.fields["email"].required = False
 
+        # Disable the 'status' and 'lodge_reply' fields for non-staff users
         if user and not user.is_staff:
             self.fields["status"].disabled = True
             self.fields["lodge_reply"].disabled = True
