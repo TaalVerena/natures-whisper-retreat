@@ -23,6 +23,7 @@
                 {% csrf_token %}
                 {{ form.as_p }}
                 <div class="mt-2">Sleeps up to {{ lodge.sleeps }} guests.</div>
+                <div class="mt-2">Cabin rate: ${{ lodge.rate }} per night.</div>
                 <button type="submit" class="btn btn-primary mt-4">Book Now</button>
             </form>
         </div>

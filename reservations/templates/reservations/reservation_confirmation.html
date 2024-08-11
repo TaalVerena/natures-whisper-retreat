@@ -12,7 +12,7 @@
             <h5 class="card-title">Reservation from {{ reservation.start_date }} to {{ reservation.end_date }}</h5>
             <p class="card-text">Lodge: {{ reservation.lodge.name }}</p>
             <p class="card-text">Status: {{ reservation.get_status_display }}</p>
-            <p class="card-text">Total Cost: {{ reservation.total_cost }}</p>
+            <p class="card-text">Total Cost: ${{ reservation.total_cost }}</p>
 
             <!-- Conditional actions for editable reservations -->
             {% if is_editable %}
