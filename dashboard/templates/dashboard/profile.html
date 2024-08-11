@@ -18,23 +18,30 @@
 
                 <!-- Email field (read-only) -->
                 <div class="mb-3">
-                    <label for="id_email" class="form-label">Email address</label>
+                    <label for="id_email" class="form-label">Email Address</label>
                     <input type="email" class="form-control disabled" id="id_email" name="email"
                         value="{{ user.email }}" readonly>
                 </div>
 
                 <!-- Editable first name field -->
                 <div class="mb-3">
-                    <label for="id_first_name" class="form-label">First name</label>
+                    <label for="id_first_name" class="form-label">First Name</label>
                     <input type="text" class="form-control" id="id_first_name" name="first_name"
                         value="{{ user.first_name }}">
                 </div>
 
                 <!-- Editable last name field -->
                 <div class="mb-3">
-                    <label for="id_last_name" class="form-label">Last name</label>
+                    <label for="id_last_name" class="form-label">Last Name</label>
                     <input type="text" class="form-control" id="id_last_name" name="last_name"
                         value="{{ user.last_name }}">
+                </div>
+
+                <!-- Editable contact number field -->
+                <div class="mb-3">
+                    <label for="id_contact_number" class="form-label">Contact Number</label>
+                    <input type="text" class="form-control" id="id_contact_number" name="contact_number"
+                        value="{{ user.contact_number }}">
                 </div>
 
                 <!-- Buttons for navigating and submitting form -->
