@@ -4,7 +4,14 @@ from datetime import date
 
 
 class ReservationForm(forms.ModelForm):
+    """
+    Form for creating and updating reservations.
+    """
+
     class Meta:
+        """
+        Meta class to specify the model, fields, and widgets for the reservation form.
+        """
         model = Reservation
         fields = ["start_date", "end_date"]
         widgets = {

@@ -4,7 +4,14 @@ from lodges.models import Lodge
 from django.core.validators import MinValueValidator
 
 class Reservation(models.Model):
+    """
+    Model representing a reservation for a lodge.
+    """
+
     class Status(models.TextChoices):
+        """
+        Enumeration for reservation status.
+        """
         PENDING = "pending", "Pending"
         CONFIRMED = "confirmed", "Confirmed"
         CANCELLED = "cancelled", "Cancelled"
@@ -20,4 +27,10 @@ class Reservation(models.Model):
     )
 
     def __str__(self):
+        """
+        Return a string representation of the Reservation object.
+
+        Returns:
+            str: A descriptive string of the reservation details.
+        """
         return f"{self.lodge} reservation from {self.start_date} to {self.end_date}, Status: {self.status}"

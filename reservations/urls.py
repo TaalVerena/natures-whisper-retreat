@@ -5,6 +5,7 @@ from .views import (
     get_booked_dates,
 )
 
+# URL patterns for the reservations app
 urlpatterns = [
     path("reserve/<int:lodge_id>/", make_reservation, name="make_reservation"),
     path("confirmation/<int:reservation_id>/", reservation_confirmation, name="reservation_confirmation"),

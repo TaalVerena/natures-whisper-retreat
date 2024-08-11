@@ -2,15 +2,19 @@
 
 {% block content %}
 <div class="container mt-4">
+    <!-- Page title -->
     <h1>Reservation Details</h1>
 
+    <!-- Reservation information card -->
     <div class="card">
         <div class="card-body">
+            <!-- Display reservation dates and lodge -->
             <h5 class="card-title">Reservation from {{ reservation.start_date }} to {{ reservation.end_date }}</h5>
             <p class="card-text">Lodge: {{ reservation.lodge.name }}</p>
             <p class="card-text">Status: {{ reservation.get_status_display }}</p>
             <p class="card-text">Total Cost: {{ reservation.total_cost }}</p>
 
+            <!-- Conditional actions for editable reservations -->
             {% if is_editable %}
             <form method="post">
                 {% csrf_token %}
@@ -18,11 +22,13 @@
                 <button type="submit" name="cancel" class="btn btn-danger">Cancel Reservation</button>
             </form>
             {% else %}
+            <!-- Message and contact option for non-editable reservations -->
             <p class="text-warning">This reservation cannot be edited or cancelled. If you have any questions, please
                 contact us.</p>
             <a href="{% url 'contact' %}" class="btn btn-primary">Contact Us</a>
             {% endif %}
 
+            <!-- Back button to return to the previous page -->
             <a href="javascript:history.back()" class="btn btn-secondary mt-3">Go Back</a>
         </div>
     </div>

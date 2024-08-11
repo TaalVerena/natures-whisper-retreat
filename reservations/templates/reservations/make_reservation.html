@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block head %}
+<!-- Include jQuery and jQuery UI for datepicker functionality -->
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
@@ -9,11 +10,14 @@
 
 {% block content %}
 <div class="container mt-4">
+    <!-- Page title -->
     <h1>Make a Reservation at {{ lodge.name }}</h1>
     <div class="row">
+        <!-- Lodge image -->
         <div class="col-md-6 mb-4">
             <img src="{{ lodge.image.url }}" alt="{{ lodge.name }}" class="img-fluid rounded">
         </div>
+        <!-- Reservation form -->
         <div class="col-md-6">
             <form method="post">
                 {% csrf_token %}
@@ -27,20 +31,24 @@
 
 <script>
     $(document).ready(function () {
+        // Get the lodge ID from the template context
         const lodgeId = "{{ lodge.id }}";
 
+        // Fetch booked dates for the selected lodge and initialize datepicker
         $.getJSON(`/api/booked-dates/${lodgeId}/`, function (bookedDates) {
             function disableBookedDates(date) {
                 const dateString = $.datepicker.formatDate('yy-mm-dd', date);
                 return [!bookedDates.includes(dateString)];
             }
 
+            // Initialize datepicker for start date
             $('input[name="start_date"]').datepicker({
                 dateFormat: 'yy-mm-dd',
                 minDate: 1,
                 beforeShowDay: disableBookedDates
             });
 
+            // Initialize datepicker for end date
             $('input[name="end_date"]').datepicker({
                 dateFormat: 'yy-mm-dd',
                 minDate: 1,

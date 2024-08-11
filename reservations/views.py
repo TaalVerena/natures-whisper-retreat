@@ -11,6 +11,16 @@ from .models import Reservation
 
 @login_required
 def make_reservation(request, lodge_id):
+    """
+    Handle the creation of a reservation for a specific lodge.
+
+    Parameters:
+        request (HttpRequest): The HTTP request object.
+        lodge_id (int): The primary key of the lodge to be reserved.
+
+    Returns:
+        HttpResponse: The rendered reservation form or redirects upon success.
+    """
     lodge = get_object_or_404(Lodge, pk=lodge_id)
     form = ReservationForm(request.POST or None)
 
@@ -20,10 +30,10 @@ def make_reservation(request, lodge_id):
         reservation.user = request.user
         reservation.status = Reservation.Status.PENDING
 
-        # Calculate total nights
+        # Calculate total nights of the reservation
         reservation.total_nights = (reservation.end_date - reservation.start_date).days
 
-        # Ensure start date is not in the past or today
+        # Ensure start date is not today or in the past
         if reservation.start_date <= date.today():
             messages.error(request, "Start date cannot be today or in the past.")
             return render(
@@ -32,7 +42,7 @@ def make_reservation(request, lodge_id):
                 {"form": form, "lodge": lodge},
             )
 
-        # Calculate total cost based on lodge's rate
+        # Calculate total cost based on lodge's rate and duration
         if reservation.total_nights > 0:
             reservation.total_cost = lodge.rate * reservation.total_nights
         else:
@@ -43,7 +53,7 @@ def make_reservation(request, lodge_id):
                 {"form": form, "lodge": lodge},
             )
 
-        # Check for double booking
+        # Check for overlapping reservations (double booking)
         conflicting_reservations = Reservation.objects.filter(
             lodge=lodge,
             start_date__lt=reservation.end_date,
@@ -59,7 +69,7 @@ def make_reservation(request, lodge_id):
                 {"form": form, "lodge": lodge},
             )
 
-        reservation.save()
+        reservation.save() # Save the reservation if no conflicts
         messages.success(
             request, "Your reservation has been submitted and is pending confirmation."
         )
@@ -74,25 +84,23 @@ def make_reservation(request, lodge_id):
 def reservation_confirmation(request, reservation_id):
     """
     View to handle the confirmation and cancellation of reservations.
+
+    Parameters:
+        request (HttpRequest): The HTTP request object.
+        reservation_id (int): The primary key of the reservation to be confirmed or cancelled.
+
+    Returns:
+        HttpResponse: Renders the confirmation page or redirects upon action.
     """
     reservation = get_object_or_404(Reservation, id=reservation_id)
     previous_url = request.META.get("HTTP_REFERER", "/")
     today = timezone.now().date()
-
-    # Debugging: Log reservation details and current date
-    print(f"Debug: Reservation ID: {reservation.id}")
-    print(f"Debug: Reservation Status: {reservation.status}")
-    print(f"Debug: Reservation Start Date: {reservation.start_date}")
-    print(f"Debug: Today's Date: {today}")
 
     # Check if the reservation can be edited or canceled
     is_editable = (
         reservation.status != Reservation.Status.CANCELLED
         and reservation.start_date > today
     )
-
-    # Debugging: Log whether the reservation is editable
-    print(f"Debug: Is Editable: {is_editable}")
 
     if request.method == "POST":
         if is_editable:
@@ -119,19 +127,14 @@ def reservation_confirmation(request, reservation_id):
         "previous_url": previous_url,
     }
 
-    # Debugging: Log the context being passed to the template
-    print(
-        f"Debug: Context - Reservation: {reservation}, Is Editable: {is_editable}, Previous URL: {previous_url}"
-    )
-
     return render(request, "reservations/reservation_confirmation.html", context)
 
 
 def get_booked_dates(request, lodge_id):
     """
-    View to fetch booked dates for a lodge, including pending reservations.
+    Fetch booked dates for a lodge, including pending reservations.
 
-    Args:
+    Parameters:
         request (HttpRequest): The request object.
         lodge_id (int): The ID of the lodge.
 
@@ -149,6 +152,7 @@ def get_booked_dates(request, lodge_id):
     )
     booked_dates = []
 
+    # Compile all booked dates within each reservation period
     for reservation in reservations:
         current_date = reservation.start_date
         while current_date <= reservation.end_date:
