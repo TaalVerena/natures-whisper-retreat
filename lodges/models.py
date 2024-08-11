@@ -24,6 +24,9 @@ class Lodge(models.Model):
 
     def __str__(self):
         """
-        String for representing the Lodge object (name).
+        Return a string representation of the Lodge object.
+
+        Returns:
+            str: The name of the lodge.
         """
         return self.name

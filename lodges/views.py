@@ -16,6 +16,12 @@ def is_staff_user(user):
 def lodge_list(request):
     """
     Display a paginated list of lodges.
+
+    Parameters:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: Rendered HTML template displaying a list of lodges.
     """
     lodges_list = Lodge.objects.all().order_by("name")
     paginator = Paginator(lodges_list, 3)
@@ -29,6 +35,13 @@ def lodge_list(request):
 def lodge_detail(request, pk):
     """
     Display details of a single lodge.
+
+    Parameters:
+        request (HttpRequest): The HTTP request object.
+        pk (int): Primary key of the lodge.
+
+    Returns:
+        HttpResponse: Rendered HTML template displaying lodge details.
     """
     lodge = get_object_or_404(Lodge, pk=pk)
     return render(request, "lodges/lodge_detail.html", {"lodge": lodge})
@@ -38,6 +51,12 @@ def lodge_detail(request, pk):
 def add_lodge(request):
     """
     Add a new lodge.
+
+    Parameters:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: Redirects to lodge list on success or renders form template on failure.
     """
     if not request.user.is_staff:
         messages.error(request, "You do not have permission to access this page.")
@@ -58,6 +77,13 @@ def add_lodge(request):
 def edit_lodge(request, pk):
     """
     Edit an existing lodge.
+
+    Parameters:
+        request (HttpRequest): The HTTP request object.
+        pk (int): Primary key of the lodge to edit.
+
+    Returns:
+        HttpResponse: Redirects to lodge list on success or renders form template on failure.
     """
     if not request.user.is_staff:
         messages.error(request, "You do not have permission to access this page.")
@@ -79,6 +105,13 @@ def edit_lodge(request, pk):
 def delete_lodge(request, pk):
     """
     Delete an existing lodge.
+
+    Parameters:
+        request (HttpRequest): The HTTP request object.
+        pk (int): Primary key of the lodge to delete.
+
+    Returns:
+        HttpResponse: Redirects to lodge list on success or renders confirmation template.
     """
     if not request.user.is_staff:
         messages.error(request, "You do not have permission to access this page.")

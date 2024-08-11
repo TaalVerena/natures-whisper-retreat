@@ -11,6 +11,7 @@ class LodgeForm(forms.ModelForm):
     class Meta:
         """
         Meta class to specify the model and fields.
+        Configures the fields to include in the form and the widgets used.
         """
 
         model = Lodge

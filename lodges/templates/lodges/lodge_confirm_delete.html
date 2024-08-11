@@ -2,11 +2,16 @@
 
 {% block content %}
 <main role="main" class="container">
+    <!-- Page title for lodge deletion -->
     <h1 class="text-center my-4">Delete Lodge</h1>
+    <!-- Confirmation message for deleting a lodge -->
     <p>Are you sure you want to delete "{{ lodge.name }}"?</p>
+    <!-- Form to confirm lodge deletion -->
     <form method="post">
         {% csrf_token %}
+        <!-- Submit button to delete the lodge -->
         <button type="submit" class="btn btn-danger">Delete</button>
+        <!-- Cancel button to return to the lodges list -->
         <a href="{% url 'lodges' %}" class="btn btn-secondary">Cancel</a>
     </form>
 </main>

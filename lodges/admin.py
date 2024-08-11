@@ -10,8 +10,10 @@ class LodgeAdmin(SummernoteModelAdmin):
     Customizes the appearance and behavior of
     the Lodge model in the Django admin interface.
     """
-
+    # Fields to display in the admin list view
     list_display = ["name", "rate", "sleeps"]
+
+    # Field layout in the admin form
     fieldsets = (
         (
             None,
@@ -34,4 +36,6 @@ class LodgeAdmin(SummernoteModelAdmin):
             },
         ),
     )
+
+    # Fields using the Summernote editor
     summernote_fields = ("description", "amenities")
