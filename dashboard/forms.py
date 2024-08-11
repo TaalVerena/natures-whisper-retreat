@@ -13,6 +13,10 @@ class ReservationForm(forms.ModelForm):
         """
         model = Reservation
         fields = ["user", "lodge", "start_date", "end_date", "status"]
+        widgets = {
+            "start_date": forms.DateInput(attrs={"type": "text", "class": "form-control"}),
+            "end_date": forms.DateInput(attrs={"type": "text", "class": "form-control"}),
+        }
 
 
 class ProfileForm(forms.ModelForm):

@@ -1,4 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<!-- jQuery and jQuery UI for datepicker functionality -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -14,4 +22,33 @@
         <a href="{% url 'reservation_list' %}" class="btn btn-secondary">Cancel</a>
     </form>
 </div>
+
+<script>
+    $(document).ready(function () {
+        const lodgeId = "{{ reservation.lodge.id }}";
+
+        $.getJSON(`/api/booked-dates/${lodgeId}/`, function (bookedDates) {
+            function disableBookedDates(date) {
+                const dateString = $.datepicker.formatDate('yy-mm-dd', date);
+                return [!bookedDates.includes(dateString)];
+            }
+
+            $('input[name="start_date"]').datepicker({
+                dateFormat: 'yy-mm-dd',
+                minDate: 1,
+                beforeShowDay: disableBookedDates
+            }).on('keydown', function (e) {
+                e.preventDefault();
+            });
+
+            $('input[name="end_date"]').datepicker({
+                dateFormat: 'yy-mm-dd',
+                minDate: 1,
+                beforeShowDay: disableBookedDates
+            }).on('keydown', function (e) {
+                e.preventDefault();
+            });
+        });
+    });
+</script>
 {% endblock %}

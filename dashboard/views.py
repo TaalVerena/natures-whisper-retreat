@@ -152,14 +152,36 @@ def edit_reservation(request, pk):
         HttpResponse: Redirects to reservation list after editing or renders edit form.
     """
     reservation = get_object_or_404(Reservation, pk=pk)
+
     if request.method == "POST":
         form = ReservationForm(request.POST, instance=reservation)
+
         if form.is_valid():
-            form.save()
-            messages.success(request, "Reservation edited successfully.")
-            return redirect("reservation_list")
+            edited_reservation = form.save(commit=False)
+
+            # Check for overlapping reservations (double booking)
+            conflicting_reservations = Reservation.objects.filter(
+                lodge=edited_reservation.lodge,
+                start_date__lt=edited_reservation.end_date,
+                end_date__gt=edited_reservation.start_date,
+                status=Reservation.Status.CONFIRMED,
+            ).exclude(
+                pk=pk
+            )  # Exclude the current reservation
+
+            if conflicting_reservations.exists():
+                messages.error(
+                    request, "Selected dates overlap with an existing booking."
+                )
+            elif edited_reservation.start_date >= edited_reservation.end_date:
+                messages.error(request, "Check-out date must be after check-in date.")
+            else:
+                edited_reservation.save()
+                messages.success(request, "Reservation edited successfully.")
+                return redirect("reservation_list")
     else:
         form = ReservationForm(instance=reservation)
+
     return render(request, "dashboard/edit_reservation.html", {"form": form})
 
 
