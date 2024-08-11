@@ -11,6 +11,7 @@ class ContactForm(forms.ModelForm):
         """
         Configures model and fields.
         """
+
         model = ContactRequest
         fields = ["name", "email", "category", "message", "status", "lodge_reply"]
 
@@ -29,3 +30,9 @@ class ContactForm(forms.ModelForm):
         if user and not user.is_staff:
             self.fields["status"].disabled = True
             self.fields["lodge_reply"].disabled = True
+            self.fields["status"].widget.attrs.update(
+                {"class": "form-control disabled"}
+            )
+            self.fields["lodge_reply"].widget.attrs.update(
+                {"class": "form-control disabled"}
+            )

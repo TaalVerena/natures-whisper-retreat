@@ -1,3 +1,17 @@
+/* Default style for all form controls */
+.form-control {
+    background-color: white;
+    color: black;
+    border: 1px solid #bdc3c7;
+}
+
+/* Greyed-out style for disabled fields */
+.form-control.disabled {
+    background-color: #e9ecef;
+    color: #6c757d;
+}
+
+/* Other styles */
 html,
 body {
     height: 100%;
@@ -209,7 +223,6 @@ label {
 }
 
 .form-control {
-    background-color: #ecf0f1;
     border: 1px solid #bdc3c7;
 }
 
