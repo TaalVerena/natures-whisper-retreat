@@ -196,21 +196,21 @@ A personalized dashboard for users to manage bookings, view and manage queries a
    
    By clicking on the booking in the dropdown, users can view additional details, including the lodge name, dates, status and booking total.
 
-   ![Booking Details](booking-details.png)
+   ![Booking Details](/README-media/booking-details.png)
 
 - Booking Confirmation:
    
    Users can confirm their bookings by clicking on the reservation and confirming the booking as long as it is more than 24 hours before the reservation date. A confirmation message is displayed, and the user is returned to the user dashboard.
    ALternatively, users can contact Nature's Whisper Retreat for assistance.
 
-   ![Booking Details](booking-details.png)
+   ![Booking Details](/README-media/booking-details.png)
 
 - Booking Cancellation:
    
    Users can cancel their bookings by clicking on the reservation and confirming the cancellation as long as it is more than 24 hours before the reservation date. A confirmation message is displayed, and the user is returned to the user dashboard.
    ALternatively, users can contact Nature's Whisper Retreat for assistance.
 
-   ![Booking Cancellation / Confirmation](/README-mediabooking-cancellation-confirmation.png)
+   ![Booking Cancellation / Confirmation](/README-media/booking-cancellation-confirmation.png)
 
 - Bookings Within 24 Hours:
    
@@ -228,14 +228,14 @@ A personalized dashboard for users to manage bookings, view and manage queries a
 
    Queries can be viewed by clicking on the query in the dropdown, which opens to show the user's name, email, category, message, status and lodge reply.
 
-   ![User Edit Query Page](user-edit-query.png)
+   ![User Edit Query Page](/README-media/user-edit-query.png)
 
-   ![User Query Status and Reply](user-query-status-and-reply.png)
+   ![User Query Status and Reply](/README-media/user-query-status-and-reply.png)
 
 ### **Booking and Reservations**:
 An intuitive booking engine, allowing users to reserve their preferred lodges based on real-time availability.
 
-![Reservation Page](reservation-page.png)
+![Reservation Page](/README-media/reservation-page.png)
 
 - Sign In:
   
@@ -245,7 +245,7 @@ An intuitive booking engine, allowing users to reserve their preferred lodges ba
   
   Users can select their desired check-in and check-out dates using the interactive calendar, which displays available dates as well as greyed-out past dates and any unavailable dates.
 
-  ![Calendar Availability](calendar-availability.png)
+  ![Calendar Availability](/README-media/calendar-availability.png)
 
   Typing in the dates manually has been disabled to prevent users from booking past dates or entering invalid information.
 
@@ -263,7 +263,7 @@ An intuitive booking engine, allowing users to reserve their preferred lodges ba
 
    From here, users can see the booking status has been updated to 'Cancelled'.
 
-   ![Cancelled Booking Dashboard](cancelled-booking-dashboard.png)
+   ![Cancelled Booking Dashboard](/README-media/cancelled-booking-dashboard.png)
 
 - Pending Bookings:
 
@@ -350,7 +350,7 @@ A comprehensive admin portal for managing bookings and user queries.
 
    The user's username and email are displayed but cannot be updated. If the user wishes to change their username or email, they can contact Nature's Whisper Retreat for assistance.
    
-   ![Profile Email](/README-media/profile-email.png)
+   ![Profile Update](/README-media/profile-update.png)
 
 ### **404 Page**:
 A custom 404 page to guide users back to the main site in case of a broken link or missing page.
