@@ -13,13 +13,6 @@ from .models import Reservation
 def make_reservation(request, lodge_id):
     """
     Handle the creation of a reservation for a specific lodge.
-
-    Parameters:
-        request (HttpRequest): The HTTP request object.
-        lodge_id (int): The primary key of the lodge to be reserved.
-
-    Returns:
-        HttpResponse: The rendered reservation form or redirects upon success.
     """
     lodge = get_object_or_404(Lodge, pk=lodge_id)
     form = ReservationForm(request.POST or None)

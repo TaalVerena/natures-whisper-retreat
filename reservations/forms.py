@@ -9,9 +9,6 @@ class ReservationForm(forms.ModelForm):
     """
 
     class Meta:
-        """
-        Meta class to specify the model, fields, and widgets for the reservation form.
-        """
         model = Reservation
         fields = ["start_date", "end_date"]
         widgets = {
