@@ -86,6 +86,10 @@ def reservation_confirmation(request, reservation_id):
         HttpResponse: Renders the confirmation page or redirects upon action.
     """
     reservation = get_object_or_404(Reservation, id=reservation_id)
+    if reservation.user != request.user:
+        messages.error(request, "You do not have permission to view this reservation.")
+        return redirect("dashboard")
+
     previous_url = request.META.get("HTTP_REFERER", "/")
     today = timezone.now().date()
 
