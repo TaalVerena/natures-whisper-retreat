@@ -11,19 +11,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nature's Whisper Retreat</title>
-    <!-- Meta Description -->
+
+    <!-- Meta Description and Keywords for SEO -->
     <meta name="description"
         content="Book your stay at Nature's Whisper Retreat and experience the tranquility of Crater Lakes, USA. Enjoy comfortable lodges surrounded by nature's beauty.">
-    <!-- Meta Keywords -->
     <meta name="keywords"
         content="Nature's Whisper Retreat, lodges, Crater Lakes, USA, booking, accommodations, nature, tranquility">
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <!-- Font Awesome -->
+
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <!-- Favicon -->
     <link rel="icon" href="{% static 'images/nwr-favicon.ico' %}" type="image/x-icon">
 
@@ -39,6 +43,7 @@
         <!-- Navigation Bar -->
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container-fluid">
+                <!-- Branding and toggle button for mobile view -->
                 <a class="navbar-brand" href="{% url 'home' %}">Nature's Whisper Retreat</a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
@@ -47,7 +52,7 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarContent">
-                    <!-- Main nav links -->
+                    <!-- Main navigation links -->
                     <div class="navbar-nav mx-auto">
                         <ul class="navbar-nav">
                             <li class="nav-item">
@@ -62,6 +67,7 @@
                                 <a class="nav-link {% if request.path == '/lodges/' %}active{% endif %}"
                                     href="{% url 'lodges' %}" aria-label="Lodges">Lodges</a>
                             </li>
+                            <!-- Conditional links based on user authentication and role -->
                             {% if user.is_authenticated %}
                             {% if user.is_staff %}
                             <a class="nav-link {% if request.path == '/dashboard/reservations/' %}active{% endif %}"
@@ -109,6 +115,7 @@
     </header>
 
     <div class="overlay-messages">
+        <!-- Display messages if any exist -->
         {% if messages %}
         {% for message in messages %}
         <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
@@ -121,10 +128,10 @@
 
 
     {% block content %}
-    <!-- Content -->
+    <!-- Main content area to be filled by child templates -->
     {% endblock %}
 
-    <!-- Footer -->
+    <!-- Footer with contact, social media links, and location -->
     <footer class="footer mt-auto py-4 text-white">
         <div class="container">
             <!-- Headers and Information -->
@@ -185,7 +192,7 @@
     </footer>
 
 
-    <!-- Bootstrap Bundle with Popper -->
+    <!-- Bootstrap Bundle with Popper for JavaScript functionalities -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
         </script>
