@@ -1,9 +1,11 @@
 {% load static %}
 {% load cloudinary %}
+
 <!-- Lodge detail section -->
 <section class="my-5">
   <!-- Section heading -->
   <h2>Explore Our Lodges</h2>
+
   <!-- Lodge cards -->
   <div class="row">
     {% for lodge in lodges %}
@@ -25,6 +27,7 @@
     </div>
     {% endfor %}
   </div>
+  
   <!-- Call-to-action buttons for non-staff users -->
   {% if not user.is_staff %}
   <div class="text-center mt-5">

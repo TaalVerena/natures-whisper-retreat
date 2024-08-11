@@ -9,6 +9,9 @@ class LodgeOverviewForm(forms.ModelForm):
     """
 
     class Meta:
+        """
+        Meta configuration for LodgeOverviewForm.
+        """
         model = LodgeOverview
         fields = ["name", "description", "image"]
         widgets = {

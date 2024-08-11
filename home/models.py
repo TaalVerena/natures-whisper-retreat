@@ -7,7 +7,7 @@ class LodgeOverview(models.Model):
     Model representing an overview of a lodge.
 
     This model contains basic information about a lodge,
-      such as its name, description, and image.
+    such as its name, description, and image.
 
     Attributes:
         name (CharField): The name of the lodge.

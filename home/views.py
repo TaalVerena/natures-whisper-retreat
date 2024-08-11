@@ -7,9 +7,13 @@ from .forms import LodgeOverviewForm
 
 def home_view(request):
     """
-    View function for rendering the home page.
-    Retrieves all LodgeOverview objects from the database and renders the 'index.html' template
-    with the retrieved lodges data.
+    Render the home page with a list of all lodges.
+
+    Parameters:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The rendered 'index.html' template with all lodges.
     """
     lodges = LodgeOverview.objects.all()
     return render(request, "home/index.html", {"lodges": lodges})
@@ -19,6 +23,14 @@ def home_view(request):
 def edit_lodge_overview(request, pk):
     """
     Edit an existing lodge overview.
+
+    Parameters:
+        request (HttpRequest): The HTTP request object.
+        pk (int): The primary key of the lodge overview to edit.
+
+    Returns:
+        HttpResponse: The rendered form for editing a lodge overview,
+                      or a redirect to the home page upon successful submission.
     """
     if not request.user.is_staff:
         messages.error(request, "You do not have permission to access this page.")

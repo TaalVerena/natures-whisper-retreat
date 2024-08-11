@@ -3,6 +3,7 @@
 
 {% block head %}
 {{ block.super }}
+<!-- Include styles and scripts for Summernote editor -->
 <link href="{% static 'django_summernote/summernote-bs4.css' %}" rel="stylesheet">
 <script src="{% static 'django_summernote/jquery.js' %}"></script>
 <script src="{% static 'django_summernote/bootstrap.js' %}"></script>
@@ -11,11 +12,14 @@
 
 {% block content %}
 <main role="main" class="container">
+    <!-- Page title -->
     <h1 class="text-center my-4">Edit Lodge Overview</h1>
+    <!-- Form for editing lodge details -->
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.media }}
         {{ form.as_p }}
+        <!-- Form buttons for submission and cancellation -->
         <button type="submit" class="btn btn-primary">Update</button>
         <a href="{% url 'home' %}" class="btn btn-secondary">Cancel</a>
     </form>
