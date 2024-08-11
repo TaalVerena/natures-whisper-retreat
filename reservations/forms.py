@@ -14,14 +14,14 @@ class ReservationForm(forms.ModelForm):
         widgets = {
             "start_date": forms.DateInput(
                 attrs={
-                    "type": "date",
+                    "type": "text",
                     "class": "form-control",
                     "min": date.today().isoformat(),
                 }
             ),
             "end_date": forms.DateInput(
                 attrs={
-                    "type": "date",
+                    "type": "text",
                     "class": "form-control",
                     "min": date.today().isoformat(),
                 }
