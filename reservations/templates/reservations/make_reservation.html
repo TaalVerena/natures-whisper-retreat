@@ -31,10 +31,8 @@
 
 <script>
     $(document).ready(function () {
-        // Get the lodge ID from the template context
         const lodgeId = "{{ lodge.id }}";
 
-        // Fetch booked dates for the selected lodge and initialize datepicker
         $.getJSON(`/api/booked-dates/${lodgeId}/`, function (bookedDates) {
             function disableBookedDates(date) {
                 const dateString = $.datepicker.formatDate('yy-mm-dd', date);
@@ -46,6 +44,8 @@
                 dateFormat: 'yy-mm-dd',
                 minDate: 1,
                 beforeShowDay: disableBookedDates
+            }).on('keydown', function(e) {
+                e.preventDefault();  // Disable manual typing
             });
 
             // Initialize datepicker for end date
@@ -53,6 +53,8 @@
                 dateFormat: 'yy-mm-dd',
                 minDate: 1,
                 beforeShowDay: disableBookedDates
+            }).on('keydown', function(e) {
+                e.preventDefault();  // Disable manual typing
             });
         });
     });
