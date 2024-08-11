@@ -12,33 +12,28 @@ from .models import ContactRequest
 
 @method_decorator(login_required, name="dispatch")
 class ContactCreateView(CreateView):
-    """
-    View for creating contact requests.
-    """
-
     model = ContactRequest
     form_class = ContactForm
     template_name = "contact/contact_form.html"
-    success_url = "/contact/success/"
+    success_url = reverse_lazy("contact_success")
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
 
     def form_valid(self, form):
-        """
-        Set the user and save the form if valid.
-        """
         form.instance.user = self.request.user
-        messages.success(
-            self.request, "Your contact request has been submitted successfully."
-        )
+        # Explicitly set status to 'pending' if not specified
+        if not form.instance.status:
+            form.instance.status = 'pending'
+
+        messages.success(self.request, "Your contact request has been submitted successfully.")
         return super().form_valid(form)
 
-    def get_initial(self):
-        """
-        Provide initial data for the contact form.
-        """
-        initial = super().get_initial()
-        if self.request.user.is_authenticated:
-            initial["email"] = self.request.user.email
-        return initial
+    def form_invalid(self, form):
+        print("Form errors:", form.errors)
+        return super().form_invalid(form)
 
 
 class ContactUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
