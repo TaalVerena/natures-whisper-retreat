@@ -12,6 +12,9 @@ from .models import ContactRequest
 
 @method_decorator(login_required, name="dispatch")
 class ContactCreateView(CreateView):
+    """
+    View to handle the creation of a new contact request.
+    """
     model = ContactRequest
     form_class = ContactForm
     template_name = "contact/contact_form.html"

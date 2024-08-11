@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from lodges.models import Lodge
 
+
 class Reservation(models.Model):
     """
     Model representing a reservation for a lodge.
