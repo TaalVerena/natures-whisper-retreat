@@ -28,6 +28,11 @@ The application incorporates a range of features designed to ensure a comprehens
     - [**User Dashboard**:](#user-dashboard)
     - [**Booking and Reservations**:](#booking-and-reservations)
     - [**Admin Dashboard**:](#admin-dashboard)
+    - [Admin Lodge Overview Management:](#admin-lodge-overview-management)
+    - [Admin Lodge CRUD:](#admin-lodge-crud)
+      - [Admin Add Lodge Page:](#admin-add-lodge-page)
+      - [Admin Edit Lodge Page:](#admin-edit-lodge-page)
+    - [Profile Page:](#profile-page)
     - [**404 Page**:](#404-page)
     - [**Responsive Design**:](#responsive-design)
     - [**Lodge Management**:](#lodge-management)
@@ -143,7 +148,7 @@ Individual sections for each lodge, showcasing descriptions, amenities, pricing,
 ### **Contact Form**:
 A user-friendly contact form for general enquiries and feedback, allowing users to reach out to Nature's Whisper Retreat with ease.
 
-Users are required to fill in their name, email, select a category, and provide a message before submitting the form. If the user is logged in, their email will be pre-filled in the email field.
+Users are required to fill in their name, email, select a category, and provide a message before submitting the form.
 
 Upon submission, the user is notified that their message has been sent successfully.
 
@@ -167,35 +172,70 @@ Users are able to login or register for an account to access personalized featur
    ![Register Page](/README-media/register-page.png)
 
 ### **User Dashboard**:
-A personalized dashboard for users to manage bookings and view reservation history.
+A personalized dashboard for users to manage bookings, view and manage queries and view reservation history.
 
 - Logged In Guest Header:
    
-   Once a user is logged in, they can access their dashboard by clicking on the "My Bookings" link or their username in the header.
+   Once a user is logged in, they can access their dashboard by clicking on the "My Bookings & Queries" link.
 
    ![Logged in Guest Header](/README-media/logged-in-guest-header.png)
 
 - User Dashboard:
    
-   The user dashboard displays the user's booking history, including the lodge name and reservation dates.
+   The user dashboard displays the user's booking history, including the lodge name and reservation dates, along with any submitted queries.
 
    ![User Dashboard](/README-media/user-dashboard.png)
 
 - Booking Dropdown:
    
-   Users can view their booking details by clicking on the dropdown arrow, which expands to show the lodge name and reservation dates.
+   Users can view their booking details by clicking on the dropdown arrow, which expands to show the lodge name, reservation dates and booking status.
 
    ![User Booking Dropdown](/README-media/user-booking-dropdown.png)
 
-- Booking Cancellation:
+- View Booking Details:
    
-   Users can cancel their bookings by clicking on the reservation and confirming the cancellation as long as it is more than 24 hours before the reservation date.
+   By clicking on the booking in the dropdown, users can view additional details, including the lodge name, dates, status and booking total.
+
+   ![Booking Details](booking-details.png)
+
+- Booking Confirmation:
+   
+   Users can confirm their bookings by clicking on the reservation and confirming the booking as long as it is more than 24 hours before the reservation date. A confirmation message is displayed, and the user is returned to the user dashboard.
    ALternatively, users can contact Nature's Whisper Retreat for assistance.
 
-   ![Booking Cancellation / Confirmation](/README-media/booking-cancellation-confirmation.png)
+   ![Booking Details](booking-details.png)
+
+- Booking Cancellation:
+   
+   Users can cancel their bookings by clicking on the reservation and confirming the cancellation as long as it is more than 24 hours before the reservation date. A confirmation message is displayed, and the user is returned to the user dashboard.
+   ALternatively, users can contact Nature's Whisper Retreat for assistance.
+
+   ![Booking Cancellation / Confirmation](/README-mediabooking-cancellation-confirmation.png)
+
+- Bookings Within 24 Hours:
+   
+   If a user attempts to make changed to a booking within 24 hours of the reservation date, they will receive an message prompting them to contact Nature's Whisper Retreat for assistance.
+
+   ![24H Booking Message](/README-media/24h-booking-message.png)
+
+- Queries:
+      
+   Full CRUD functionality has been implemented for user queries. Users are able to create queries through the contact form, view their queries, edit their queries and delete their queries.
+   
+   Users can view their submitted queries, including the category and message. Users are presented with the query details along with buttons to view or delete the query.
+   
+   ![User Queries Dropdown](/README-media/user-queries-dropdown.png)
+
+   Queries can be viewed by clicking on the query in the dropdown, which opens to show the user's name, email, category, message, status and lodge reply.
+
+   ![User Edit Query Page](user-edit-query.png)
+
+   ![User Query Status and Reply](user-query-status-and-reply.png)
 
 ### **Booking and Reservations**:
 An intuitive booking engine, allowing users to reserve their preferred lodges based on real-time availability.
+
+![Reservation Page](reservation-page.png)
 
 - Sign In:
   
@@ -203,40 +243,114 @@ An intuitive booking engine, allowing users to reserve their preferred lodges ba
 
 - Reservation Calendar:
   
-  Users can select their desired check-in and check-out dates using the interactive calendar, which displays available dates in green and unavailable dates in red.
+  Users can select their desired check-in and check-out dates using the interactive calendar, which displays available dates as well as greyed-out past dates and any unavailable dates.
 
-  If users attempt to book a lodge for a past date, they will receive an error message prompting them to select a future date.
-   
-   ![Reservation Calendar](/README-media/reservation-calendar.png)
+  ![Calendar Availability](calendar-availability.png)
+
+  Typing in the dates manually has been disabled to prevent users from booking past dates or entering invalid information.
+
+  If users attempt to book a lodge for unavailable dates or dates that overlap with existing bookings, an error message is displayed, prompting users to select alternative dates.
 
 - Booking Confirmation:
    
    Once users select their check-in and check-out dates, they can proceed to confirm their reservation by clicking the "Book Now" button. A confirmation message is displayed, and the user can confirm or cancel the booking.
    
-    ![Booking Confirmation](/README-media/booking-cancellation-confirmation.png)
+    ![Booking Details](/README-media/booking-details.png)
+
+- Booking Cancellation:
+
+   Users can cancel their bookings by clicking the 'Cancel Reservation' button. A confirmation message is displayed, and the user is returned to the dashboard.
+
+   From here, users can see the booking status has been updated to 'Cancelled'.
+
+   ![Cancelled Booking Dashboard](cancelled-booking-dashboard.png)
+
+- Pending Bookings:
+
+   If a user is in the process of booking a lodge and has clicked the 'Book Now' button, but has not confirmed or cancelled the booking, the booking will be displayed as 'Pending' in the user dashboard.
+
+   The reason for this is so that users can continue with the booking process if they have accidentally clicked the 'Book Now' button or if they have changed their mind.
 
 ### **Admin Dashboard**:
-A comprehensive admin portal for managing listings, bookings, and user accounts, providing site owners with the tools to maintain and update the website.
+A comprehensive admin portal for managing bookings and user queries.
 
 - Admin Login & Header:
   
-  Admins can access the admin portal by logging in with their credentials. The admin dashboard provides a range of features, including managing lodges, bookings, and user accounts.
+  Admins can access the admin portal by logging in with their credentials. The admin dashboard provides a range of features, including managing reservations and user queries.
 
-  Once logged in, the header is updated to display the admin's username and a link to 'Lodge Bookings'.
+  Once logged in, the header is updated to display the admin's username and a link to 'Lodge Bookings & Queries'.
   
   ![Logged In Admin Header](/README-media/logged-in-admin-header.png)
 
-- Admin Username:
+- Admin 'Lodge Bookings & Queries' Dashboard:
   
-  By clicking the username in the header, the admin can access the admin dashboard home page and associated features.
-  
-  ![Admin Dashboard](/README-media/admin-dashboard.png)
+  By clicking the 'Lodge Bookings' button, the admin can view and manage all bookings and queries.
 
-- Admin 'Lodge Bookings':
-  
-  By clicking the 'Lodge Bookings' button, the admin can view all bookings.
+   ![Admin Reservation Dashboard](/README-media/admin-reservation-dashboard.png)
 
-  ![Admin Reservation Dashboard](/README-media/admin-reservation-dashboard.png)
+   ![Admin Queries Dashboard](/README-media/admin-queries-dashboard.png)
+
+- Admin Booking Details:
+  
+  Admins can view the details of each booking, including the user's name, lodge name, reservation dates, total, and status. The admin can also edit or delete the booking.
+
+   ![Admin Booking Details](/README-media/admin-booking-details.png)
+
+- Admin Query Details:
+   
+   Admins can view the details of each query, including the user's name, email, category, message, status, and lodge reply. The admin can also edit or delete the query.
+
+   ![Admin Query Details](/README-media/admin-query-details.png)
+
+   ![Admin Query Details Buttons](/README-media/admin-query-details-buttons.png)
+
+### Admin Lodge Overview Management:
+  
+  Admins can view and edit lodge overview details by logging in, navigating to the home page and clicking on the 'Edit' button.
+
+  ![Admin Lodge Overview](/README-media/admin-lodge-overview.png)
+
+  After clicking the 'Edit' button, the admin is redirected to the edit page where they can update the lodge details, including the lodge name, description and image.
+
+  ![Admin Lodge Overview Edit](/README-media/admin-lodge-overview-edit.png)
+
+### Admin Lodge CRUD:
+
+   Admins have CRUD functionality for lodges. They can create, read, update and delete lodges by navigating to the 'Lodges' page and clicking on the 'Add Lodge' button, 'Edit' button or 'Delete' button.
+
+   ![Admin Lodges Page](/README-media/admin-lodges.png)
+
+   ![Admin Lodges Edit & Delete Buttons](/README-media/admin-lodges-edit-delete.png)
+
+#### Admin Add Lodge Page:
+
+   Admins can add a new lodge by clicking on the 'Add Lodge' button, which redirects them to the 'Add Lodge' page. Here, they can enter the lodge details, including the lodge name, description, amenities, images, guest capacity, and pricing.
+
+   ![Admin Add Lodge Page](/README-media/admin-add-lodge.png)
+   ![Admin Add Lodge Page Buttons](/README-media/admin-add-lodge-buttons.png)
+
+   Once the admin clicks the 'Add' button, the lodge is added to the database and displayed on the 'Lodges' page. If the Admin clicks the 'Cancel' button, they are redirected back to the 'Lodges' page.
+
+#### Admin Edit Lodge Page:
+
+   Admins can edit a lodge by clicking on the 'Edit' button, which redirects them to the 'Edit Lodge' page. Here, they can update the lodge details, including the lodge name, description, amenities, images, guest capacity, and pricing.
+
+   ![Admin Edit Lodge Page](/README-media/admin-edit-lodge.png)
+   ![Admin Edit Lodge Page Buttons](/README-media/admin-edit-lodge-buttons.png)
+
+   Once the admin clicks the 'Update' button, the lodge details are updated in the database and displayed on the 'Lodges' page. If the Admin clicks the 'Cancel' button, they are redirected back to the 'Lodges' page.
+
+### Profile Page:
+   
+   Users can view their profile page by clicking on the profile icon / username in the header. The profile page displays the user's username, email, first name and last name.
+   
+   ![Profile Page](/README-media/profile-page.png)
+
+   Users can update their first and last name by entering the new details and clicking the 'Update Profile' button. A confirmation message is displayed, and the user is redirected to the profile page.
+
+   The user's username and email are displayed but cannot be updated. If the user wishes to change their username or email, they can contact Nature's Whisper Retreat for assistance.
+   
+   ![Profile Email](/README-media/profile-email.png)
 
 ### **404 Page**:
 A custom 404 page to guide users back to the main site in case of a broken link or missing page.
@@ -322,7 +436,7 @@ A custom favicon for the site, enhancing brand recognition and visual appeal.
 Error checking and validation throughout the site to ensure data integrity and user satisfaction.
 
 ### **Database Integration**:
-Seamless integration with the database to store and retrieve user, lodge, and booking information.
+Seamless integration with the database to store and retrieve user, lodge, booking, and query information.
 
 ### **User Roles**:
 Distinct roles for users, admins, etc. to ensure secure access and data management.
@@ -334,7 +448,7 @@ A visually appealing design that reflects the tranquility and beauty of the Crat
 Intuitive navigation and clear calls-to-action to guide users through the booking process.
 
 ## Future Developments
-There are enhancements and features in the pipeline for Nature's Whisper Retreat to further improve the user experience and functionality of the platform. These developments will be implemented in future updates to provide users with a more comprehensive and enjoyable booking experience.
+There are enhancements and features in the pipeline for Nature's Whisper Retreat to further improve the user experience and functionality of the platform. These developments will be implemented in future updates to provide users with an even more comprehensive and enjoyable booking experience.
 
 ### **Upcoming Features**:
 - **User Reviews & Ratings**: Implement a review system for users to share feedback and ratings on their lodge experiences.
@@ -418,12 +532,12 @@ The login and registration pages are designed to be user-friendly and secure, pr
    ![Wireframe Register Page](/README-media/wireframe-register-page.png)
 
 #### User Account Dashboard:
-A user dashboard displaying booking history nd the ability to manage bookings.
+A user dashboard displaying booking history, queries and the ability to manage bookings.
    
    ![Wireframe User Dashboard](/README-media/wireframe-user-dashboard.png)
 
 #### Admin Dashboard:
-A comprehensive layout for site administrators to manage listings, bookings, and user accounts. A wireframe was not created for this section as it was developed based on the needs of the admin portal.
+A comprehensive layout for site administrators to manage listings, bookings, and user queries. A wireframe was not created for this section as it was developed based on the needs of the admin / site staff.
 
 #### Booking Flow:
 A step-by-step visualization of the booking process, from date selection to confirmation.
@@ -616,9 +730,7 @@ CSS code was tested using the W3C CSS Validator to identify and resolve any synt
 ### Known Bugs
 | Bug | Description | Update |
 | --- | ----------- | ------ |
-| **Unable to Book If Clicking on the Rate** | Users are unable to book a lodge if they click on the rate instead of the the rest of the date block on the calendar. | To be fixed in future updates. |
-| **Booking Past Dates if Filling in Dates Manually** | Users are able to book lodges for past dates if they fill in the dates manually. | To be fixed in future updates. |
-| **Mobile Calendar View Blocks Rates** | The mobile calendar view blocks the rates for the lodges. | To be fixed in future updates. |
+| **Admin Dashboard Redirect** | If admins are logged in and they click 'Cancel' after going to the edit query page, it redirects them to their personal dashboard instead of the admin dashboard. | To update the redirect URL to the admin dashboard. |
 
 ## Deployment
 Nature's Whisper Retreat was developed using the Gitpod IDE and deployed on Heroku. The deployment process involved several key steps to ensure a seamless transition from development to production, including setting up the project environment, configuring the database, and deploying the application to the live server.
