@@ -182,7 +182,11 @@ def edit_reservation(request, pk):
     else:
         form = ReservationForm(instance=reservation)
 
-    return render(request, "dashboard/edit_reservation.html", {"form": form})
+    return render(
+        request,
+        "dashboard/edit_reservation.html",
+        {"form": form, "reservation": reservation},  # Ensure this context is passed
+    )
 
 
 @login_required

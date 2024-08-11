@@ -27,26 +27,29 @@
     $(document).ready(function () {
         const lodgeId = "{{ reservation.lodge.id }}";
 
+        // Fetch booked dates for the selected lodge
         $.getJSON(`/api/booked-dates/${lodgeId}/`, function (bookedDates) {
             function disableBookedDates(date) {
                 const dateString = $.datepicker.formatDate('yy-mm-dd', date);
                 return [!bookedDates.includes(dateString)];
             }
 
+            // Initialize datepicker for start date
             $('input[name="start_date"]').datepicker({
                 dateFormat: 'yy-mm-dd',
                 minDate: 1,
                 beforeShowDay: disableBookedDates
             }).on('keydown', function (e) {
-                e.preventDefault();
+                e.preventDefault();  // Disable manual typing
             });
 
+            // Initialize datepicker for end date
             $('input[name="end_date"]').datepicker({
                 dateFormat: 'yy-mm-dd',
                 minDate: 1,
                 beforeShowDay: disableBookedDates
             }).on('keydown', function (e) {
-                e.preventDefault();
+                e.preventDefault();  // Disable manual typing
             });
         });
     });
