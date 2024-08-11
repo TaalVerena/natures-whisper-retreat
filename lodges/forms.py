@@ -7,6 +7,12 @@ class LodgeForm(forms.ModelForm):
     """
     Form for creating and updating lodges.
     """
+    def __init__(self, *args, **kwargs):
+        super(LodgeForm, self).__init__(*args, **kwargs)
+        self.fields['name'].widget.attrs.update({
+            'style': 'max-width: 570px;',
+            'class': 'form-control'
+        })
 
     class Meta:
         """

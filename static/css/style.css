@@ -30,6 +30,10 @@ a {
     text-decoration: none;
 }
 
+.btn {
+    margin-bottom: 20px;
+}
+
 /* Logo */
 .logo {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
