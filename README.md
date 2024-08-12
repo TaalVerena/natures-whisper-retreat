@@ -604,6 +604,9 @@ The testing process encompassed the following key areas:
    | **User Registration** | Attempted to register with a new username and password. | Passed |
    | **User Login** | Logged in with the registered username and password. | Passed |
    | **User Logout** | Logged out of the account. | Passed |
+   | **Assessing the User Dashboard** | Logged in as a guest and accessed the user dashboard. | Passed |
+   | **Assessing the Admin Dashboard** | Logged in as an admin and accessed the admin dashboard. | Passed |
+   | **Assessing the Admin Dashboard as a User** | Logged in as a guest and attempted to access the admin dashboard. I was unable to access the admin dashboard. | Passed |
    
 - **Lodge Management**: Tested the creation, editing, and deletion of lodge listings by owners and admins, validating data integrity and user permissions.
    | Test | Description | Result |
@@ -611,66 +614,161 @@ The testing process encompassed the following key areas:
    | **Lodge Creation** | Created a new lodge listing with details and images. | Passed |
    | **Lodge Editing** | Updated the lodge details and images. | Passed |
    | **Lodge Deletion** | Deleted a lodge listing from the admin portal. | Passed |
+   | **Lodge Overview Viewing** | Accessed the lodge overview page to view the top 3 lodges. | Passed |
+   | **Lodge Overview Editing** | Updated the lodge overview details as an admin. | Passed |
+   | **Lodge Overview Editing as a User** | Attempted to edit the lodge overview as a user. I was unable to access the lodge overview editing page. | Passed |
+   | **Lodge Editing as a User** | Attempted to edit a lodge as a user. I was unable to access the lodge editing page. | Passed |
+   | **Lodge Deletion as a User** | Attempted to delete a lodge as a user. I was unable to access the lodge deletion page. | Passed |
+   
 - **Booking and Reservations**: Checked the booking engine for accurate availability, pricing, and reservation confirmation, ensuring a seamless booking experience.
    | Test | Description | Result |
    | --- | ----------- | ---------- |
    | **Reservation Calendar** | Selected check-in and check-out dates for booking a lodge. | Passed |
    | **Booking Confirmation** | Confirmed the reservation and received a booking confirmation. | Passed |
    | **Booking Cancellation** | Cancelled a booking and received a cancellation confirmation. | Passed |
+   | **Booking Within 24 Hours** | Attempted to book a lodge within 24 hours of the reservation date. Current date is greyed out and unavailable for booking. | Passed |
+   | **Booking Overlapping Dates** | Attempted to book a lodge for dates that overlap with existing bookings. An error message was displayed, prompting to select alternative dates. | Passed |
+   | **Partially Finished Booking** | Started the booking process but did not confirm or cancel the booking. The booking was displayed as 'Pending' in the user dashboard. | Passed |
+   | **Editing a Booking within 24 Hours** | Attempted to edit a booking within 24 hours of the reservation date. A message was displayed prompting to contact Nature's Whisper Retreat for assistance. | Passed |
+   | **Editing a Cancelled Booking** | Attempted to edit a cancelled booking. A message was displayed prompting to contact Nature's Whisper Retreat for assistance. | Passed |
+   | **Editing a Past Booking** | Attempted to edit a booking for past dates. A message was displayed prompting to contact Nature's Whisper Retreat for assistance. | Passed |
+   | **Confirming a Pending Booking** | Confirmed a pending booking and received a confirmation message. | Passed |
+   | **Confirming a Pending Booking for Past Dates** | Attempted to confirm a pending booking for past dates. Dates were greyed out and unavailable for booking. | Passed |
+   | **Confirming a Pending Booking for Overlapping Dates** | Attempted to confirm a pending booking for dates that overlap with existing bookings. An error message was displayed, prompting to select alternative dates. | Passed |
+   | **Accessing Another User's Booking** | Attempted to access another user's booking. I was unable to access the booking details. | Passed |
+   | **Viewing Reservations as an Admin** | Accessed the admin portal to view all bookings. | Passed |
+   | **Viewing Reservations as a User** | Accessed the user dashboard to view booking history. | Passed |
+   | **Cancelling a Booking as an Admin** | Cancelled a booking from the admin portal. | Passed |
+   | **Cancelling a Booking as a User** | Cancelled a booking from the user dashboard. | Passed |
+   | **Editing a Booking as an Admin** | Edited a booking from the admin portal. | Passed |
+   | **Cancelling a Booking as an Admin** | Cancelled a booking from the admin portal. | Passed |
+   | **Viewing Queries as a User** | Accessed the user dashboard to view submitted queries. | Passed |
+   | **Viewing Queries as an Admin** | Accessed the admin portal to view all user queries. | Passed |
+   | **Editing Queries as an Admin** | Edited a user query from the admin portal. | Passed |
+   | **Editing Queries as a User** | Edited a user query from the user dashboard. | Passed |
+   | **Deleting Queries as an Admin** | Deleted a user query from the admin portal. | Passed |
+   | **Deleting Queries as a User** | Deleted a user query from the user dashboard. | Passed |
+
 - **Dynamic Pricing**: Tested the admin portal for setting and updating lodge prices, verifying data persistence and real-time updates.
    | Test | Description | Result |
    | --- | ----------- | ---------- |
    | **Pricing Update** | Adjusted the lodge price | Passed |
+   | **Pricing Persistence** | Checked the updated price in the database | Passed |
+   | **Pricing Real-Time Update** | Verified the real-time price update on the site | Passed |
 
 - **Responsive Design**: Ensured the site's responsiveness across various devices, including desktops, laptops, tablets, and mobile phones, validating layout consistency and usability.
    | Test | Description | Result |
    | --- | ----------- | ---------- |
-   | **Desktop View** | Checked the site's layout and functionality on desktop screens. | Passed |
-   | **Tablet View** | Verified the site's responsiveness on tablet devices. | Passed |
-   | **Mobile View** | Tested the site's usability and navigation on mobile phones. | Passed |
+   | **Home Desktop View** | Checked the site's home page layout and functionality on desktop screens. | Passed |
+   | **Home Tablet View** | Checked the site's home page layout and functionality on tablet screens. | Passed |
+   | **Home Mobile View** | Checked the site's home page layout and functionality on mobile screens. | Passed |
+   | **About Desktop View** | Checked the site's about page layout and functionality on desktop screens. | Passed |
+   | **About Tablet View** | Checked the site's about page layout and functionality on tablet screens. | Passed |
+   | **About Mobile View** | Checked the site's about page layout and functionality on mobile screens. | Passed |
+   | **Lodges Desktop View** | Checked the site's lodges page layout and functionality on desktop screens. | Passed |
+   | **Lodges Tablet View** | Checked the site's lodges page layout and functionality on tablet screens. | Passed |
+   | **Lodges Mobile View** | Checked the site's lodges page layout and functionality on mobile screens. | Passed |
+   | **Contact Form Desktop View** | Checked the site's contact form layout and functionality on desktop screens. | Passed |
+   | **Contact Form Tablet View** | Checked the site's contact form layout and functionality on tablet screens. | Passed |
+   | **Contact Form Mobile View** | Checked the site's contact form layout and functionality on mobile screens. | Passed |
+   | **Login Desktop View** | Checked the site's login page layout and functionality on desktop screens. | Passed |
+   | **Login Tablet View** | Checked the site's login page layout and functionality on tablet screens. | Passed |
+   | **Login Mobile View** | Checked the site's login page layout and functionality on mobile screens. | Passed |
+   | **Register Desktop View** | Checked the site's register page layout and functionality on desktop screens. | Passed |
+   | **Register Tablet View** | Checked the site's register page layout and functionality on tablet screens. | Passed |
+   | **Register Mobile View** | Checked the site's register page layout and functionality on mobile screens. | Passed |
+   | **User Dashboard Desktop View** | Checked the site's user dashboard layout and functionality on desktop screens. | Passed |
+   | **User Dashboard Tablet View** | Checked the site's user dashboard layout and functionality on tablet screens. | Passed |
+   | **User Dashboard Mobile View** | Checked the site's user dashboard layout and functionality on mobile screens. | Passed |
+   | **Admin Dashboard Desktop View** | Checked the site's admin portal layout and functionality on desktop screens. | Passed |
+   | **Admin Dashboard Tablet View** | Checked the site's admin portal layout and functionality on tablet screens. | Passed |
+   | **Admin Dashboard Mobile View** | Checked the site's admin portal layout and functionality on mobile screens. | Passed |
+   | **Profile Desktop View** | Checked the site's profile page layout and functionality on desktop screens. | Passed |
+   | **Profile Tablet View** | Checked the site's profile page layout and functionality on tablet screens. | Passed |
+   | **Profile Mobile View** | Checked the site's profile page layout and functionality on mobile screens. | Passed |
+   | **404 Page Desktop View** | Checked the site's 404 page layout and functionality on desktop screens. | Passed |
+   | **404 Page Tablet View** | Checked the site's 404 page layout and functionality on tablet screens. | Passed |
+   | **404 Page Mobile View** | Checked the site's 404 page layout and functionality on mobile screens. | Passed |
+
 - **404 Page**: Tested the custom 404 page to ensure proper redirection and user guidance in case of broken links or missing pages.
   | Test | Description | Result |
    | --- | ----------- | ---------- |
    | **404 Page Display** | Accessed a non-existent page to trigger the 404 error. | Passed |
    | **404 Page Navigation** | Clicked on the link to return to the main site. | Passed |
+
 - **Contact Form**: Submitted test enquiries through the contact form, verifying admin portal updates and data submission.
   | Test | Description | Result |
    | --- | ----------- | ---------- |
    | **Contact Form Submission** | Filled in the contact form and submitted an enquiry. | Passed |
+   | **Invalid Email Submission** | Attempted to submit an enquiry with an invalid email address. A prompt was displayed to enter a valid email address. | Passed |
+   | **Empty Fields Submission** | Attempted to submit an enquiry with empty fields. A prompt was displayed to fill in the required fields. | Passed |
    | **Admin Portal Update** | Checked the admin portal for new contact requests. | Passed |
-- **User Dashboard**: Tested the user dashboard for booking management and reservation history, ensuring data accuracy and user-friendly interactions.
+   | **User Query Viewing** | Accessed the user dashboard to view the submitted query. | Passed |
+   | **User Query Editing** | Edited the user query in the user dashboard. | Passed |
+   | **User Query Deletion** | Deleted the user query in the user dashboard. | Passed |
+   | **Admin Query Viewing** | Accessed the admin portal to view the user query. | Passed |
+   | **Admin Query Editing** | Edited the user query in the admin portal. | Passed |
+   | **Admin Query Deletion** | Deleted the user query in the admin portal. | Passed |
+
+- **User Dashboard**: Tested the user dashboard for booking management, query management and reservation history, ensuring data accuracy and user-friendly interactions.
   | Test | Description | Result |
    | --- | ----------- | ---------- |
    | **Booking History** | Viewed the user's booking history in the dashboard. | Passed |
    | **Booking Cancellation** | Cancelled a booking and received a cancellation confirmation. | Passed |
+   | **Booking Confirmation** | Confirmed a booking and received a confirmation message. | Passed |
+   | **24h Window Booking** | Attempted to edit a booking within 24 hours of the reservation date. A message was displayed prompting to contact Nature's Whisper Retreat for assistance. | Passed |
+   | **Overlapping Dates Booking** | Attempted to book a lodge for dates that overlap with existing bookings. An error message was displayed, prompting to select alternative dates. | Passed |
+   | **Pending Booking** | Started the booking process but did not confirm or cancel the booking. The booking was displayed as 'Pending' in the user dashboard. | Passed |
+   | **Query Submission** | Submitted a query through the contact form. | Passed |
+   | **Query Viewing** | Accessed the user dashboard to view the submitted query. | Passed |
+   | **Query Editing** | Edited the user query in the user dashboard. | Passed |
+   | **Query Deletion** | Deleted the user query in the user dashboard. | Passed |
+
 - **Admin Dashboard**: Verified the admin portal for managing listings, bookings, and user accounts, validating data retrieval and CRUD operations.
    | Test | Description | Result |
    | --- | ----------- | ---------- |
-   | **Lodge Management** | Created lodge listing and updated details in the admin portal. | Passed |
-   | **Booking Overview** | Viewed all bookings and updated reservation statuses. | Passed |
-   | **User Account Management** | Accessed user accounts and updated user roles. | Passed |
+   | **Admin Login** | Logged in as an admin to access the admin portal. | Passed |
+   | **Admin Header Update** | Checked the header for the admin username and link to the admin portal. | Passed |
+   | **View Lodge Bookings** | Accessed the admin portal to view all lodge bookings. | Passed |
+   | **View User Queries** | Accessed the admin portal to view all user queries. | Passed |
+   | **Edit Booking Details** | Edited the booking details in the admin portal. | Passed |
+   | **Delete Booking** | Deleted a booking from the admin portal. | Passed |
+   | **Edit Query Details** | Edited the query details in the admin portal. | Passed |
+   | **Delete Query** | Deleted a query from the admin portal. | Passed |
+
 - **Favicon**: Checked the custom favicon for proper display and brand recognition across browsers and devices.
+
 - **Error Handling**: Tested error checking and validation throughout the site, ensuring data integrity and user satisfaction.
+
 - **Database Integration**: Verified the seamless integration with the database to store and retrieve user, lodge, and booking information, validating data persistence and retrieval.
+
 - **User Roles**: Tested distinct roles for users, admins, etc., ensuring secure access and data management.
   | Test | Description | Result |
    | --- | ----------- | ---------- |
    | **User Role Access** | Logged in as a user and accessed the user dashboard. | Passed |
    | **Admin Role Access** | Logged in as an admin and accessed the admin portal. | Passed |
+   | **User Role Restrictions** | Attempted to access the admin portal as a user. I was unable to access the admin portal. | Passed |
+   | **User Role Restrictions** | Attempted to access the admin portal as a user. I was unable to access the admin portal. | Passed |
+
 - **Inviting Design**: Checked the visually appealing design for consistency and brand representation, validating the site's aesthetic appeal and user engagement.
+
 - **User Friendliness**: Ensured intuitive navigation and clear calls-to-action to guide users through the booking process, validating user satisfaction and engagement.
+
 - **Accessibility**: Tested the site for accessibility features.
+
 - **Performance**: Checked the site's performance using Lighthouse reports and optimized where necessary.
   | Test | Description | Result |
    | --- | ----------- | ---------- |
    | **Performance Report** | Generated a Lighthouse report to assess the site's performance. | Passed |
    | **Optimization** | Optimized the site based on the performance report. | Passed |
+
 - **SEO**: Ensured the site's SEO optimization by adding meta tags, alt attributes, and structured data.
   | Test | Description | Result |
    | --- | ----------- | ---------- |
    | **Meta Tags** | Added meta tags for improved search engine visibility. | Passed |
    | **Alt Attributes** | Added alt attributes to images for accessibility and SEO. | Passed |
    | **Structured Data** | Implemented structured data for enhanced search results. | Passed |
+
 - **Cross-Browser Compatibility**: Tested the site across various browsers, including Chrome, Firefox, and Edge, ensuring consistent functionality and appearance.
   | Test | Description | Result |
    | --- | ----------- | ---------- |
